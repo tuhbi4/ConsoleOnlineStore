@@ -13,7 +13,7 @@ Console project "Console online store"
 
 ## Roadmap
 
-- [ ] Prototype ready
+- [X] [Prototype ready](https://app.mockplus.com/run/rp/RwPj7C_19pnd/ZKwh6fhPl8j/OszRMl1Pu?ps=0&ha=0&la=0&fc=0&out=1)
 - [ ] Business logic ready
 - [ ] View ready
 - [ ] Controller ready
