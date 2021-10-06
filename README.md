@@ -11,13 +11,23 @@ Console project "Console online store"
 ![](https://img.shields.io/badge/documentation-0%25-critical)
 ***
 
+## Project prototype
+
+[Base prototype](https://app.mockplus.com/run/rp/RwPj7C_19pnd/8B2iCUnUzdl/OszRMl1Pu?ps=0&ha=0&la=0&fc=0&out=1)
+
+***
+
 ## Roadmap
 
-- [X] [Prototype ready](https://app.mockplus.com/run/rp/RwPj7C_19pnd/ZKwh6fhPl8j/OszRMl1Pu?ps=0&ha=0&la=0&fc=0&out=1)
-- [ ] Business logic ready
-- [ ] View ready
-- [ ] Controller ready
-- [ ] Manual testing
+- [ ] Core project ready:
+  - [ ] Catalog
+  - [ ] Working with database
+  - [ ] Account
+  - [ ] Basket
+- [ ] View project ready
+- [ ] Extra functionality:
+  - [ ] Search product by name
+  - [ ] Pagination
 - [ ] Test coverage
 - [ ] Documentation
 - [ ] Merge request
