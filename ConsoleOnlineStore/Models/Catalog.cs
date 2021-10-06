@@ -7,6 +7,7 @@ namespace ConsoleOnlineStore.Models
     {
         public List<Product> ProductList { get; }
         private readonly Deserializer deserializer = new();
+
         public Catalog()
         {
             ProductList = deserializer.GetDataFromJson(@"database.json");
