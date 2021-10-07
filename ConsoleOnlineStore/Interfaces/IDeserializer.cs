@@ -5,6 +5,6 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface IDeserializer
     {
-        public List<Product> GetDataFromJson(string fileName);
+        public List<Product> GetProductListFromJson(string fileName);
     }
 }
