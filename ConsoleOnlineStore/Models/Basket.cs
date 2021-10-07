@@ -11,7 +11,7 @@ namespace ConsoleOnlineStore.Models
         private readonly Deserializer deserializer = new();
         private readonly Serializer serializer = new();
         private readonly string basketFilepath = ConfigurationManager.AppSettings.Get("basketDatabase");
-        private readonly string timerFilepath = ConfigurationManager.AppSettings.Get("timerconfig");
+        private readonly string timerFilepath = ConfigurationManager.AppSettings.Get("timerConfig");
 
         public Basket()
         {
