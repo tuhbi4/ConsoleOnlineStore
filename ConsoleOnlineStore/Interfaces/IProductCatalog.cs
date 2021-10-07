@@ -3,8 +3,8 @@ using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
-    public interface IDeserializer
+    public interface IProductCatalog
     {
-        public List<Product> GetProductList(string fileName);
+        public List<Product> ProductList { get; }
     }
 }

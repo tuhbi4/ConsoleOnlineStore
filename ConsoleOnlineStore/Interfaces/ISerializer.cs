@@ -1,12 +1,12 @@
-﻿using ConsoleOnlineStore.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
     public interface ISerializer
     {
-        public void SaveProductListToJson(string fileName, List<Product> productList);
+        public void SaveProductList(string fileName, List<Product> productList);
 
-        public void SaveNewAccountToJson(string fileName, Account newAccount);
+        public void SaveNewAccount(string fileName, Account newAccount);
     }
 }
