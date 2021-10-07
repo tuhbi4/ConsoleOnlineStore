@@ -38,5 +38,11 @@ namespace ConsoleOnlineStore.Models
 
             return accountList;
         }
+
+        public int GetTimerFromJson(string fileName)
+        {
+            string jsonString = File.ReadAllText(fileName);
+            return JsonSerializer.Deserialize<int>(jsonString);
+        }
     }
 }
