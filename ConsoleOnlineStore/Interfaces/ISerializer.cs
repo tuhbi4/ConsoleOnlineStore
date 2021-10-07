@@ -5,6 +5,8 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface ISerializer
     {
-        public void SaveData(string fileName, List<Product> productList);
+        public void SaveProductList(string fileName, List<Product> productList);
+
+        public void SaveNewAccount(string fileName, Account newAccount);
     }
 }

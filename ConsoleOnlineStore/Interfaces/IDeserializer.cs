@@ -5,6 +5,6 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface IDeserializer
     {
-        public List<Product> GetData(string fileName);
+        public List<Product> GetProductList(string fileName);
     }
 }
