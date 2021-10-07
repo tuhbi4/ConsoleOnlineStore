@@ -1,10 +1,10 @@
-﻿using ConsoleOnlineStore.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
     public interface ISerializer
     {
-        public abstract void SaveData(string fileName, List<Product> productList);
+        public void SaveData(string fileName, List<Product> productList);
     }
 }
