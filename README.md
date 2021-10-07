@@ -4,7 +4,7 @@ Console project "Console online store"
 
 ***
 ## Project status
-![](https://img.shields.io/badge/project%20completed-0%25-critical)
+![](https://img.shields.io/badge/project%20completed-10%25-orange)
 ![](https://img.shields.io/badge/build-fail-critical)
 ![](https://img.shields.io/badge/manual%20testing-fail-critical)
 ![](https://img.shields.io/badge/coverage%20-0%25-critical)
@@ -20,7 +20,7 @@ Console project "Console online store"
 ## Roadmap
 
 - [ ] Core project ready:
-  - [ ] Catalog
+  - [X] Catalog
   - [ ] Working with database
   - [ ] Account
   - [ ] Basket
