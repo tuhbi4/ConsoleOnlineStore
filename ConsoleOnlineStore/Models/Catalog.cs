@@ -1,5 +1,6 @@
 ﻿using ConsoleOnlineStore.Interfaces;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace ConsoleOnlineStore.Models
 {
@@ -7,10 +8,11 @@ namespace ConsoleOnlineStore.Models
     {
         public List<Product> ProductList { get; }
         private readonly Deserializer deserializer = new();
+        private readonly string filepath = ConfigurationManager.AppSettings.Get("productsDatabase");
 
         public Catalog()
         {
-            ProductList = deserializer.GetDataFromJson(@"database.json");
+            ProductList = deserializer.GetProductListFromJson(filepath);
         }
     }
 }
