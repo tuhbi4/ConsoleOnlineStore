@@ -1,5 +1,5 @@
-﻿using ConsoleOnlineStore.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {

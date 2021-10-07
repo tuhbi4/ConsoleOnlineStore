@@ -1,13 +1,13 @@
-﻿using ConsoleOnlineStore.Interfaces;
-using ConsoleOnlineStore.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
+using ConsoleOnlineStore.Interfaces;
+using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Services
 {
     public class LogInService : ILogInService
     {
-        private readonly Deserializer deserializer = new();
+        private readonly JsonDeserializer deserializer = new();
         private readonly SearchAccountService searchAccountService = new();
         private readonly MatchPasswordService matchPasswordService = new();
         private readonly string filepath = ConfigurationManager.AppSettings.Get("accountsDatabase");
@@ -16,7 +16,7 @@ namespace ConsoleOnlineStore.Services
         {
             if (IsAccountMatched(login, password))
             {
-                List<Account> accountList = deserializer.GetAccountListFromJson(filepath);
+                List<Account> accountList = deserializer.GetAccountList(filepath);
                 Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
                 accountForMatching.LogIn();
             }

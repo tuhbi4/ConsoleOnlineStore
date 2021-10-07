@@ -1,10 +1,10 @@
-﻿using ConsoleOnlineStore.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
     public interface IDeserializer
     {
-        public List<Product> GetProductListFromJson(string fileName);
+        public List<Product> GetProductList(string fileName);
     }
 }
