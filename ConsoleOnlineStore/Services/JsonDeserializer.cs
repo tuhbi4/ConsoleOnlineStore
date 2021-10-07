@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using ConsoleOnlineStore.Interfaces;
+using ConsoleOnlineStore.Models;
 using Newtonsoft.Json;
 
-namespace ConsoleOnlineStore.Models
+namespace ConsoleOnlineStore.Services
 {
     public class JsonDeserializer : IDeserializer
     {

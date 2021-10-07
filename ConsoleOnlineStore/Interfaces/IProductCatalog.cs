@@ -3,7 +3,7 @@ using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
-    public interface ICatalog
+    public interface IProductCatalog
     {
         public List<Product> ProductList { get; }
     }
