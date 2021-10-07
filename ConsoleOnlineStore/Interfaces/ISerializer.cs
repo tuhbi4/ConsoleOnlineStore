@@ -5,6 +5,6 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface ISerializer
     {
-        public void SaveDataToJson(string fileName, List<Product> productList);
+        public abstract void SaveData(string fileName, List<Product> productList);
     }
 }
