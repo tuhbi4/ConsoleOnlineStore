@@ -31,7 +31,7 @@ namespace ConsoleOnlineStore.Models
 
         public void ClearBasket()
         {
-            ProductList.Clear();
+            ClearBasket(null);
         }
 
         public void ClearBasket(object obj)
