@@ -2,7 +2,7 @@
 
 namespace ConsoleOnlineStore.Models
 {
-    public class Account : IAccount
+    public class Account
     {
         public string Login { get; }
         public string Password { get; }
