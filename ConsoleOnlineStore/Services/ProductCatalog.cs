@@ -2,18 +2,18 @@
 using System.Configuration;
 using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Models;
+using ConsoleOnlineStore.Repository;
 
 namespace ConsoleOnlineStore.Services
 {
     public class ProductCatalog : IProductCatalog
     {
         public List<Product> ProductList { get; }
-        private readonly JsonDeserializer deserializer = new();
-        private readonly string filepath = ConfigurationManager.AppSettings.Get("productsDatabase");
+        private readonly Repository<Product> productsRepository = new(ConfigurationManager.AppSettings.Get("productsJson"));
 
         public ProductCatalog()
         {
-            ProductList = deserializer.GetProductList(filepath);
+            ProductList = productsRepository.GetItemList();
         }
     }
 }
