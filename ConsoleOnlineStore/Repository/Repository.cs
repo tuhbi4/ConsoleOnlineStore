@@ -6,13 +6,13 @@ namespace ConsoleOnlineStore.Repository
 {
     public class Repository<T> : IRepository<T>
     {
-        private readonly JsonSerializer jsonSerializer;
-        private readonly JsonDeserializer<T> jsonDeserializer;
+        private readonly ISerializer jsonSerializer;
+        private readonly IDeserializer<T> jsonDeserializer;
 
-        public Repository(string filePath)
+        public Repository(ISerializer jsonSerializer, IDeserializer<T> jsonDeserializer)
         {
-            jsonSerializer = new(filePath);
-            jsonDeserializer = new(filePath);
+            this.jsonSerializer = jsonSerializer;
+            this.jsonDeserializer = jsonDeserializer;
         }
 
         public List<T> GetItemList()
