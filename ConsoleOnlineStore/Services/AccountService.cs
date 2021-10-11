@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Security.Cryptography;
-using System.Text;
 using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Models;
 using ConsoleOnlineStore.Repository;
@@ -30,9 +27,10 @@ namespace ConsoleOnlineStore.Services
 
         private bool IsMatched(string login, string password)
         {
+            MD5HashService md5Hash = new();
             List<Account> accountList = accountsRepository.GetItemList();
             Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
-            return accountForMatching.Password == GetHash(password);
+            return accountForMatching.Password == md5Hash.GetHash(password);
         }
 
         private bool IsExist(string login)
@@ -50,16 +48,9 @@ namespace ConsoleOnlineStore.Services
 
         public void Register(string login, string password)
         {
-            Account newAccount = new(login, GetHash(password));
+            MD5HashService md5Hash = new();
+            Account newAccount = new(login, md5Hash.GetHash(password));
             accountsRepository.Create(newAccount);
-        }
-
-        private static string GetHash(string input)
-        {
-            var md5 = MD5.Create();
-            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            return Convert.ToBase64String(hash);
         }
     }
 }
