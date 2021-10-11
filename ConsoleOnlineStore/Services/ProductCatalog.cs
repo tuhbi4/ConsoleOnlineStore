@@ -8,9 +8,9 @@ namespace ConsoleOnlineStore.Services
     {
         public List<Product> ProductList { get; }
 
-        public ProductCatalog(IRepository<Product> productsRepository)
+        public ProductCatalog(IRepository<Product> productRepository)
         {
-            ProductList = productsRepository.GetItemList();
+            ProductList = productRepository.Read();
         }
     }
 }

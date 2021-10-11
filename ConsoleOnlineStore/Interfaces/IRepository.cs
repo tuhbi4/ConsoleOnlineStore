@@ -4,11 +4,13 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface IRepository<T>
     {
-        public List<T> GetItemList();
-
-        public T GetItem(int id);
-
         public void Create(T dataObject);
+
+        public void Create(List<T> dataObject);
+
+        public List<T> Read();
+
+        public T Read(int id);
 
         public void Update(int id);
 
