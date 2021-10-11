@@ -9,6 +9,12 @@ namespace ConsoleOnlineStore.Services
     public class AccountService : IAccountService
     {
         private readonly Repository<Account> accountsRepository = new(ConfigurationManager.AppSettings.Get("accountsJson"));
+        private readonly IHashService md5Hash;
+
+        public AccountService(MD5HashService md5Hash)
+        {
+            this.md5Hash = md5Hash;
+        }
 
         public void LogIn(string login, string password)
         {
@@ -27,7 +33,6 @@ namespace ConsoleOnlineStore.Services
 
         private bool IsMatched(string login, string password)
         {
-            MD5HashService md5Hash = new();
             List<Account> accountList = accountsRepository.GetItemList();
             Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
             return accountForMatching.Password == md5Hash.GetHash(password);
@@ -48,7 +53,6 @@ namespace ConsoleOnlineStore.Services
 
         public void Register(string login, string password)
         {
-            MD5HashService md5Hash = new();
             Account newAccount = new(login, md5Hash.GetHash(password));
             accountsRepository.Create(newAccount);
         }
