@@ -1,6 +1,4 @@
-﻿using ConsoleOnlineStore.Interfaces;
-
-namespace ConsoleOnlineStore.Models
+﻿namespace ConsoleOnlineStore.Models
 {
     public class Account
     {
