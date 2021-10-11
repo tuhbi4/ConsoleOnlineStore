@@ -7,11 +7,10 @@ namespace ConsoleOnlineStore.Services
     public class ProductCatalog : IProductCatalog
     {
         public List<Product> ProductList { get; }
-        private readonly JsonDeserializer deserializer = new();
 
-        public ProductCatalog()
+        public ProductCatalog(IRepository<Product> productsRepository)
         {
-            ProductList = deserializer.GetData(@"database.json");
+            ProductList = productsRepository.GetItemList();
         }
     }
 }

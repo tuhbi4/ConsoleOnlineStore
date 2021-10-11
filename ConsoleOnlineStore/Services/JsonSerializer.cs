@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using ConsoleOnlineStore.Interfaces;
-using ConsoleOnlineStore.Models;
 using Newtonsoft.Json;
 
 namespace ConsoleOnlineStore.Services
 {
     public class JsonSerializer : ISerializer
     {
-        public void SaveData(string fileName, List<Product> productList)
+        private readonly string filePath;
+
+        public JsonSerializer(string filePath)
         {
-            string jsonString = JsonConvert.SerializeObject(productList, Formatting.Indented);
-            File.AppendAllText(fileName, jsonString);
+            this.filePath = filePath;
+        }
+
+        public void SaveData<T>(T dataObject)
+        {
+            string jsonString = JsonConvert.SerializeObject(dataObject, Formatting.Indented);
+            File.AppendAllText(filePath, jsonString);
         }
     }
 }

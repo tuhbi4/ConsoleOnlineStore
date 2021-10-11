@@ -1,17 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using ConsoleOnlineStore.Interfaces;
-using ConsoleOnlineStore.Models;
 using Newtonsoft.Json;
 
 namespace ConsoleOnlineStore.Services
 {
-    public class JsonDeserializer : IDeserializer
+    public class JsonDeserializer<T> : IDeserializer<T>
     {
-        public List<Product> GetData(string fileName)
+        private readonly string filePath;
+
+        public JsonDeserializer(string filePath)
         {
-            string jsonString = File.ReadAllText(fileName);
-            List<Product> productList = JsonConvert.DeserializeObject<List<Product>>(jsonString);
+            this.filePath = filePath;
+        }
+
+        public List<T> GetData()
+        {
+            string jsonString = File.ReadAllText(filePath);
+            List<T> productList = JsonConvert.DeserializeObject<List<T>>(jsonString);
             return productList;
         }
     }

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
-    public interface IDeserializer
+    public interface IDeserializer<T>
     {
-        public List<Product> GetData(string fileName);
+        public List<T> GetData();
     }
 }
