@@ -1,6 +1,6 @@
 ﻿namespace ConsoleOnlineStore.Models
 {
-    public class MyTimer
+    public class TimerModel
     {
         public int TimeOut { get; set; }
     }

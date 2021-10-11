@@ -9,9 +9,9 @@ namespace ConsoleOnlineStore.Services
     {
         public List<Product> Basket { get; }
         private readonly IRepository<Product> orderRepository;
-        private readonly IDeserializer<MyTimer> timerJsonDeserializer;
+        private readonly IDeserializer<TimerModel> timerJsonDeserializer;
 
-        public BasketService(IRepository<Product> orderRepository, IDeserializer<MyTimer> timerJsonDeserializer)
+        public BasketService(IRepository<Product> orderRepository, IDeserializer<TimerModel> timerJsonDeserializer)
         {
             this.orderRepository = orderRepository;
             this.timerJsonDeserializer = timerJsonDeserializer;
