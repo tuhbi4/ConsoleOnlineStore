@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Models;
-using ConsoleOnlineStore.Repository;
 
 namespace ConsoleOnlineStore.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly Repository<Account> accountsRepository = new(ConfigurationManager.AppSettings.Get("accountsJson"));
+        private readonly IRepository<Account> accountsRepository;
         private readonly IHashService md5Hash;
 
-        public AccountService(MD5HashService md5Hash)
+        public AccountService(IHashService md5Hash, IRepository<Account> accountsRepository)
         {
             this.md5Hash = md5Hash;
+            this.accountsRepository = accountsRepository;
         }
 
         public void LogIn(string login, string password)
