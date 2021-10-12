@@ -9,12 +9,12 @@ namespace ConsoleOnlineStore.Services
     {
         public List<Product> Basket { get; }
         private readonly IRepository<Product> orderRepository;
-        private readonly IDeserializer<TimerModel> timerJsonDeserializer;
+        private readonly int timerTimeOut;
 
-        public BasketService(IRepository<Product> orderRepository, IDeserializer<TimerModel> timerJsonDeserializer)
+        public BasketService(IRepository<Product> orderRepository, int timerTimeOut)
         {
             this.orderRepository = orderRepository;
-            this.timerJsonDeserializer = timerJsonDeserializer;
+            this.timerTimeOut = timerTimeOut;
         }
 
         public void AddProduct(Product product)
@@ -22,7 +22,7 @@ namespace ConsoleOnlineStore.Services
             Basket.Add(product);
             if (Basket.Count == 1)
             {
-                int dueTime = timerJsonDeserializer.GetData()[0].TimeOut;
+                int dueTime = timerTimeOut;
                 TimerCallback callback = new(ClearBasket);
                 using Timer timer = new(callback, null, dueTime, Timeout.Infinite);
             }

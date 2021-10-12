@@ -1,0 +1,8 @@
+[
+  {
+    "ProductsJson": "data\\products.json",
+    "AccountsJson": "data\\accounts.json",
+    "OrderJson": "data\\order.json",
+    "TimerTimeOut": 10000
+  }
+]
