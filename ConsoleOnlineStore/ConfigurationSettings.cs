@@ -1,21 +1,19 @@
-﻿using ConsoleOnlineStore.Models;
-using ConsoleOnlineStore.Services;
+﻿using ConsoleOnlineStore.Interfaces;
+using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore
 {
     public static class ConfigurationSettings
 
     {
-        private static readonly JsonDeserializer<Config> timerJsonDeserializer = new(Config.ConfigJsonPath);
-
         public static string ProductsJson { get; private set; }
         public static string AccountsJson { get; private set; }
         public static string OrderJson { get; private set; }
         public static int TimerTimeOut { get; private set; }
 
-        public static void LoadSettings()
+        public static void LoadSettings(IDeserializer<Config> configJsonDeserializer)
         {
-            var configList = timerJsonDeserializer.GetData();
+            var configList = configJsonDeserializer.GetData();
             ProductsJson = configList[0].ProductsJson;
             AccountsJson = configList[0].AccountsJson;
             OrderJson = configList[0].OrderJson;
