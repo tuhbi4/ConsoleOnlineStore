@@ -2,12 +2,14 @@
 {
     public class Account
     {
+        public int Id { get; set; }
         public string Login { get; }
         public string Password { get; }
         public bool IsOnline { get; private set; }
 
-        public Account(string login, string password)
+        public Account(int id, string login, string password)
         {
+            Id = id;
             Login = login;
             Password = password;
         }
