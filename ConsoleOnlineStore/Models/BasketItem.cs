@@ -1,9 +1,27 @@
 ﻿namespace ConsoleOnlineStore.Models
 {
-    public class BasketItem
+    public class BasketItem : CatalogItem
     {
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
-        public decimal Cost { get; set; }
+        public decimal Cost { get; private set; }
+
+        public BasketItem(Product product) : base(product)
+        {
+            Cost = product.Price;
+        }
+
+        public override void Increment()
+        {
+            base.Increment();
+            Cost += Price;
+        }
+
+        public override void Decrement()
+        {
+            base.Decrement();
+            if (Cost > 0)
+            {
+                Cost -= Price;
+            }
+        }
     }
 }

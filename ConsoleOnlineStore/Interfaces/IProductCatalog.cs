@@ -5,6 +5,6 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface IProductCatalog
     {
-        public List<Product> ProductList { get; }
+        public List<CatalogItem> CatalogList { get; }
     }
 }
