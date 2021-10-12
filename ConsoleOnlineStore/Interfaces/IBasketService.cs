@@ -8,6 +8,6 @@ namespace ConsoleOnlineStore.Interfaces
 
         public void ClearBasket();
 
-        public void CompleteOrder();
+        public void SaveOrder();
     }
 }
