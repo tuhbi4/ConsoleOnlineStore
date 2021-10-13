@@ -9,15 +9,11 @@ namespace ConsoleOnlineStore.Services
     {
         public Basket Basket { get { return MakeBasket(); } }
         private readonly List<Product> productList = new();
-        private readonly int accountID;
-        private readonly IRepository<Order> orderRepository;
         private readonly int timerTimeOut;
 
-        public BasketService(IRepository<Order> orderRepository, int timerTimeOut, int accountID)
+        public BasketService(int timerTimeOut)
         {
-            this.orderRepository = orderRepository;
             this.timerTimeOut = timerTimeOut;
-            this.accountID = accountID;
         }
 
         public void AddProduct(Product product)
@@ -64,11 +60,6 @@ namespace ConsoleOnlineStore.Services
         private void ClearBasket(object obj)
         {
             productList.Clear();
-        }
-
-        public void SaveOrder()
-        {
-            orderRepository.Create(new Order(accountID, Basket));
         }
     }
 }
