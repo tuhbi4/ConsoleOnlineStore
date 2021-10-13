@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Models;
 
@@ -52,7 +53,7 @@ namespace ConsoleOnlineStore.Services
 
         public void Register(string login, string password)
         {
-            Account newAccount = new(accountRepository.Read()[^1].Id + 1, login, md5Hash.GetHash(password));
+            Account newAccount = new(Guid.NewGuid(), login, md5Hash.GetHash(password));
             accountRepository.Create(newAccount);
         }
     }

@@ -1,13 +1,15 @@
-﻿namespace ConsoleOnlineStore.Models
+﻿using System;
+
+namespace ConsoleOnlineStore.Models
 {
     public class Account
     {
-        public int Id { get; }
+        public Guid Id { get; }
         public string Login { get; }
         public string Password { get; }
         public bool IsOnline { get; private set; }
 
-        public Account(int id, string login, string password)
+        public Account(Guid id, string login, string password)
         {
             Id = id;
             Login = login;
