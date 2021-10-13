@@ -29,5 +29,10 @@
                 Quantity--;
             }
         }
+
+        public virtual void AddQuantity(int quantity)
+        {
+            Quantity += quantity;
+        }
     }
 }

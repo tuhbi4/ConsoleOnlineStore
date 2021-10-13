@@ -23,5 +23,11 @@
                 Cost -= Price;
             }
         }
+
+        public override void AddQuantity(int quantity)
+        {
+            base.AddQuantity(quantity);
+            Cost += Price * quantity;
+        }
     }
 }
