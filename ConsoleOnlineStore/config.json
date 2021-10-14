@@ -1,8 +1,8 @@
 [
   {
-    "ProductsJson": "data\\products.json",
-    "AccountsJson": "data\\accounts.json",
-    "OrderJson": "data\\order.json",
+    "ProductsJsonPath": "data\\products.json",
+    "AccountsJsonPath": "data\\accounts.json",
+    "OrderJsonPath": "data\\order.json",
     "TimerTimeOut": 10000
   }
 ]
