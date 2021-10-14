@@ -7,24 +7,17 @@ namespace ConsoleOnlineStore.Services
 {
     public class JsonSerializer<T> : ISerializer<T>
     {
-        private readonly string filePath;
-
-        public JsonSerializer(string filePath)
+        public void SaveData(string filePath, T dataObject)
         {
-            this.filePath = filePath;
+            SaveObject(filePath, dataObject);
         }
 
-        public void SaveData(T dataObject)
+        public void SaveData(string filePath, List<T> dataObject)
         {
-            SaveObject(dataObject);
+            SaveObject(filePath, dataObject);
         }
 
-        public void SaveData(List<T> dataObject)
-        {
-            SaveObject(dataObject);
-        }
-
-        private void SaveObject(object dataObject)
+        private void SaveObject(string filePath, object dataObject)
         {
             string jsonString = JsonConvert.SerializeObject(dataObject, Formatting.Indented);
             File.AppendAllText(filePath, jsonString);

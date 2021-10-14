@@ -6,17 +6,18 @@ namespace ConsoleOnlineStore
     public static class ConfigurationSettings
 
     {
-        public static string ProductsJson { get; private set; }
-        public static string AccountsJson { get; private set; }
-        public static string OrderJson { get; private set; }
+        private const string ConfigJsonPath = "config.json";
+        public static string ProductsJsonPath { get; private set; }
+        public static string AccountsJsonPath { get; private set; }
+        public static string OrderJsonPath { get; private set; }
         public static int TimerTimeOut { get; private set; }
 
         public static void LoadSettings(IDeserializer<Config> configJsonDeserializer)
         {
-            var configList = configJsonDeserializer.GetData();
-            ProductsJson = configList[0].ProductsJson;
-            AccountsJson = configList[0].AccountsJson;
-            OrderJson = configList[0].OrderJson;
+            var configList = configJsonDeserializer.GetData(ConfigJsonPath);
+            ProductsJsonPath = configList[0].ProductsJsonPath;
+            AccountsJsonPath = configList[0].AccountsJsonPath;
+            OrderJsonPath = configList[0].OrderJsonPath;
             TimerTimeOut = configList[0].TimerTimeOut;
         }
     }

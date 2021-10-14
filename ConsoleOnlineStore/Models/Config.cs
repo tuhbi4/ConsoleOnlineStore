@@ -2,10 +2,9 @@
 {
     public class Config
     {
-        public const string ConfigJsonPath = "config.json";
-        public string ProductsJson { get; set; }
-        public string AccountsJson { get; set; }
-        public string OrderJson { get; set; }
+        public string ProductsJsonPath { get; set; }
+        public string AccountsJsonPath { get; set; }
+        public string OrderJsonPath { get; set; }
         public int TimerTimeOut { get; set; }
     }
 }
