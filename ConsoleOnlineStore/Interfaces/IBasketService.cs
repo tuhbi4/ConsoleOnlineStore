@@ -4,8 +4,8 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface IBasketService
     {
-        public void AddProduct(Product product);
+        public void AddProduct(Product product, int quantity);
 
-        public void ClearBasket();
+        public void ClearBasket(object obj);
     }
 }
