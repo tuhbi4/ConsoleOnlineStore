@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using ConsoleOnlineStore.Interfaces.ServiceInterfaces;
-using ConsoleOnlineStore.Models.RepositoryModels;
+using ConsoleOnlineStore.Interfaces.Services;
+using ConsoleOnlineStore.Models.Repositories;
 
 namespace ConsoleOnlineStore.Services
 {

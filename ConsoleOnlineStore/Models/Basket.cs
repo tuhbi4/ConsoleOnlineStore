@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Models.Repositories;
 
 namespace ConsoleOnlineStore.Models
 {

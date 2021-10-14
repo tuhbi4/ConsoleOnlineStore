@@ -1,4 +1,4 @@
-﻿namespace ConsoleOnlineStore.Interfaces
+﻿namespace ConsoleOnlineStore.Interfaces.Services
 {
     public interface IAccountService
     {

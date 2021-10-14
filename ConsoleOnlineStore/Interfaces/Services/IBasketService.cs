@@ -1,6 +1,6 @@
-﻿using ConsoleOnlineStore.Models;
+﻿using ConsoleOnlineStore.Models.Repositories;
 
-namespace ConsoleOnlineStore.Interfaces
+namespace ConsoleOnlineStore.Interfaces.Services
 {
     public interface IBasketService
     {

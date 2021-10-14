@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ConsoleOnlineStore.Models
+namespace ConsoleOnlineStore.Models.Repositories
 {
     public class Order
     {

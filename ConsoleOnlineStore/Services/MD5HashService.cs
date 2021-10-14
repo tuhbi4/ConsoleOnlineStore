@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using ConsoleOnlineStore.Interfaces;
+using ConsoleOnlineStore.Interfaces.Services;
 
 namespace ConsoleOnlineStore.Services
 {
