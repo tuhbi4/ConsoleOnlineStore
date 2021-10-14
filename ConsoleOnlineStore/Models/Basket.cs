@@ -4,6 +4,6 @@ namespace ConsoleOnlineStore.Models
 {
     public class Basket
     {
-        public List<BasketItem> BasketList { get; set; }
+        public List<Product> ProductList { get; set; }
     }
 }
