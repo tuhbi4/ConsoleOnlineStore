@@ -25,7 +25,7 @@ Console project "Console online store"
   - [X] Account
   - [X] Basket
 - [ ] View project ready
-- [ ] Controller ready
+- [ ] Controller ready:
   - [ ] View controller
   - [ ] Core controller
   - [ ] General controller
