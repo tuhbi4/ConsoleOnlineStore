@@ -22,7 +22,7 @@ namespace ConsoleOnlineStore.Services
             }
         }
 
-        public void ClearBasket(object obj)
+        public void ClearBasket()
         {
             Basket.Clear();
         }

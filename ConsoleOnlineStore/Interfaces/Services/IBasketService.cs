@@ -6,6 +6,6 @@ namespace ConsoleOnlineStore.Interfaces.Services
     {
         public void AddProduct(Product product, int quantity);
 
-        public void ClearBasket(object obj);
+        public void ClearBasket();
     }
 }
