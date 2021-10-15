@@ -4,8 +4,8 @@ Console project "Console online store"
 
 ***
 ## Project status
-![](https://img.shields.io/badge/project%20completed-30%25-orange)
-![](https://img.shields.io/badge/build-fail-critical)
+![](https://img.shields.io/badge/project%20completed-40%25-yellow)
+![](https://img.shields.io/badge/build-success-success)
 ![](https://img.shields.io/badge/manual%20testing-fail-critical)
 ![](https://img.shields.io/badge/coverage%20-0%25-critical)
 ![](https://img.shields.io/badge/documentation-0%25-critical)
@@ -19,18 +19,21 @@ Console project "Console online store"
 
 ## Roadmap
 
-- [ ] Core project ready:
+- [X] Core project ready:
   - [X] Catalog
   - [X] Working with database
   - [X] Account
-  - [ ] Basket
+  - [X] Basket
 - [ ] View project ready
+- [ ] Controller ready
+  - [ ] View controller
+  - [ ] Core controller
+  - [ ] General controller
 - [ ] Extra functionality:
   - [ ] Search product by name
   - [ ] Pagination
 - [ ] Test coverage
 - [ ] Documentation
-- [ ] Merge request
 
 [:arrow_up_small:](#tic-tac-toe)
 
