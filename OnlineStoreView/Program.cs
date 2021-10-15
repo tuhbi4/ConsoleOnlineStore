@@ -1,12 +1,14 @@
 ﻿using System;
+using OnlineStoreView.Services;
 
 namespace OnlineStoreView
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Hello World!");
+            SwitcherService switcher = new();
+            switcher.StartInit();
         }
     }
 }
