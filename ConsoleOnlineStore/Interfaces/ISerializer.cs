@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore.Interfaces
 {
-    public interface ISerializer
+    public interface ISerializer<T>
     {
-        public void SaveData<T>(T dataObject);
+        public void SaveData(string filePath, T dataObject);
+
+        public void SaveData(string filePath, List<T> dataObject);
     }
 }

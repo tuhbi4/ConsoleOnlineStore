@@ -4,6 +4,6 @@ namespace ConsoleOnlineStore.Interfaces
 {
     public interface IDeserializer<T>
     {
-        public List<T> GetData();
+        public List<T> GetData(string filePath);
     }
 }
