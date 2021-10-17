@@ -1,4 +1,5 @@
-﻿using OnlineStoreView.Services;
+﻿using System.Collections.Generic;
+using OnlineStoreView.Services;
 
 namespace OnlineStoreView.Models
 {
@@ -10,9 +11,17 @@ namespace OnlineStoreView.Models
         {
             MenuItems = new()
             {
-                new Link("<Button>", typeof(OrderHistoryService)),
-                new Link("<Button>", typeof(OrderHistoryService)),
             };
+            Back = new Link("Back", typeof(MainMenu));
+        }
+
+        public OrderHistoryService(List<Order> orderList) : base(header)
+        {
+            MenuItems = new();
+            foreach (Order order in orderList)
+            {
+                MenuItems.Add(new Order(order.Caption, typeof(CompleteOrder), order.AccountID, order.ProductList, order.PurchaseDate));
+            }
             Back = new Link("Back", typeof(MainMenu));
         }
     }

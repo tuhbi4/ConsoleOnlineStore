@@ -1,5 +1,4 @@
-﻿using OnlineStoreView.Services;
-using OnlineStoreView.ViewModels;
+﻿using OnlineStoreView.ViewModels;
 
 namespace OnlineStoreView
 {

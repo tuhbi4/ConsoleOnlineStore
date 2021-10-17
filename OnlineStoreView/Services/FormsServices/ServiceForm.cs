@@ -6,7 +6,7 @@ namespace OnlineStoreView.Services
 {
     public abstract class ServiceForm : Menu
     {
-        public List<Span> MenuItems { get; protected set; }
+        public List<Link> MenuItems { get; protected set; }
         public Link Back { get; protected set; }
 
         protected ServiceForm(string header) : base(header)
@@ -25,19 +25,18 @@ namespace OnlineStoreView.Services
             }
             while (!IsValidAnswer(input, out validatorMessage) || input < 1 || input > MenuItems.Count + 1);
 
-
             if (input == MenuItems.Count + 1)
             {
                 CalledType = Back.LinkedMenuType;
             }
             else
             {
-                Link linkItem = MenuItems[input - 1] as Link;
+                Link linkItem = MenuItems[input - 1];
                 CalledType = linkItem.LinkedMenuType;
             }
         }
 
-        private int GetInput(ref string message, string validatorMessage)
+        protected int GetInput(ref string message, string validatorMessage)
         {
             Console.Clear();
             PrintMenu();
@@ -59,10 +58,9 @@ namespace OnlineStoreView.Services
             return input;
         }
 
-        private void PrintMenu()
+        protected virtual void PrintMenu()
         {
             PrintColorLineService.Header($" > {Header}\n");
-            PrintColorLineService.Primary("<Content>\n"); // TODO: implement the content output and think over the controls
             int i;
             for (i = 1; i <= MenuItems.Count; i++)
             {
@@ -71,13 +69,13 @@ namespace OnlineStoreView.Services
             PrintColorLineService.Information($"{i}. {Back.Caption}");
         }
 
-        public virtual bool IsValidAnswer(int input, out string errorMessage)
+        protected virtual bool IsValidAnswer(int input, out string errorMessage)
         {
             errorMessage = string.Empty;
             return true;
         }
 
-        public virtual bool IsValidAnswer(string input, out string errorMessage)
+        protected virtual bool IsValidAnswer(string input, out string errorMessage)
         {
             if (input.Length == 0)
             {
