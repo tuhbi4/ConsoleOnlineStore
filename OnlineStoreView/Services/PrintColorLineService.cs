@@ -16,6 +16,12 @@ namespace OnlineStoreView.Services
             PrintAndResetColor(text);
         }
 
+        public static void Header(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            PrintAndResetColor(text);
+        }
+
         public static void Success(string text)
         {
             Console.ForegroundColor = ConsoleColor.Green;

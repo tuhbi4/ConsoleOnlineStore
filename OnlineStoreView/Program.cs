@@ -1,5 +1,5 @@
-﻿using System;
-using OnlineStoreView.Services;
+﻿using OnlineStoreView.Services;
+using OnlineStoreView.ViewModels;
 
 namespace OnlineStoreView
 {
@@ -7,8 +7,8 @@ namespace OnlineStoreView
     {
         private static void Main()
         {
-            SwitcherService switcher = new();
-            switcher.StartInit();
+            ViewModel viewModel = new();
+            viewModel.Init();
         }
     }
 }
