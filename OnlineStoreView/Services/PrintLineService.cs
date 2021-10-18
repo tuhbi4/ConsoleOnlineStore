@@ -2,8 +2,13 @@
 
 namespace OnlineStoreView.Services
 {
-    public static class PrintColorLineService
+    public static class PrintLineService
     {
+        public static void Clear()
+        {
+            Console.Clear();
+        }
+
         public static void Primary(string text)
         {
             Console.ForegroundColor = ConsoleColor.White;

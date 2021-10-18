@@ -6,11 +6,11 @@ namespace OnlineStoreView.ViewModels
 {
     public class ViewModel
     {
-        private Menu nextMenu;
+        private MenuViewModel nextMenu;
 
         public ViewModel()
         {
-            nextMenu = new StartMenu();
+            nextMenu = new StartSelectionMenuViewModel();
         }
 
         public void Init()
@@ -18,13 +18,13 @@ namespace OnlineStoreView.ViewModels
             do
             {
                 nextMenu.Render();
-                if (nextMenu.CalledType != null)
+                if (nextMenu.Handler != null)
                 {
-                    nextMenu = Activator.CreateInstance(nextMenu.CalledType) as Menu;
+                    nextMenu = Activator.CreateInstance(nextMenu.Handler) as MenuViewModel;
                 }
                 else
                 {
-                    PrintColorLineService.Success("\n Our store closes. Goodbye!");
+                    PrintLineService.Success("\n Our store closes. Goodbye!");
                     break;
                 }
             }
