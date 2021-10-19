@@ -6,7 +6,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class BasketView : RepositoryView
     {
-        private static readonly string header = "Basket";
+        private const string header = "Basket";
 
         public new List<ProductMenuItemHandler> MenuItems { get; set; }
 

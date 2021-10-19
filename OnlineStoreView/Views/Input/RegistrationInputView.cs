@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public class RegistrationInputView : InputView
     {
-        private static readonly string header = "Enter the details to create a new account";
+        private const string header = "Enter the details to create a new account";
 
         public RegistrationInputView() : base(header)
         {

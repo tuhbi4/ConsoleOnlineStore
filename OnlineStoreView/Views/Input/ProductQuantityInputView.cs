@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public class ProductQuantityInputView : InputView
     {
-        private static readonly string header = "Aadding a product to the basket";
+        private const string header = "Aadding a product to the basket";
 
         public ProductQuantityInputView() : base(header)
         {

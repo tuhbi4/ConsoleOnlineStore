@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class MainMenuView : MenuView
     {
-        private static readonly string header = "Glad to see you here!";
+        private const string header = "Glad to see you here!";
 
         public MainMenuView() : base(header)
         {

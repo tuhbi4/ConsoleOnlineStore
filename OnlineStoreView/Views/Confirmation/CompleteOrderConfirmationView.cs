@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class CompleteOrderConfirmationView : ConfirmationView
     {
-        private static readonly string header = "Complete order";
+        private const string header = "Complete order";
 
         public CompleteOrderConfirmationView() : base(header)
         {

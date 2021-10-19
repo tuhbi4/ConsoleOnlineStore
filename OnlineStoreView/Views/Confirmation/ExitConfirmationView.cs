@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class ExitConfirmationView : ConfirmationView
     {
-        private static readonly string header = "Exit";
+        private const string header = "Exit";
 
         public ExitConfirmationView() : base(header)
         {

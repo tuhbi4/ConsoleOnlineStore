@@ -7,7 +7,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class CatalogView : RepositoryView
     {
-        private static readonly string header = "Catalog";
+        private const string header = "Catalog";
 
         public new List<ProductMenuItemHandler> MenuItems { get; set; }
 

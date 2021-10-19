@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class AuthorizationInputView : InputView
     {
-        private static readonly string header = "Enter your account details for log in";
+        private const string header = "Enter your account details for log in";
 
         public AuthorizationInputView() : base(header)
         {

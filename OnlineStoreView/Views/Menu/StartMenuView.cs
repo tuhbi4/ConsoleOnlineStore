@@ -4,7 +4,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class StartMenuView : MenuView
     {
-        private static readonly string header = "Welcome to the Best Console Store in the whole universe!";
+        private const string header = "Welcome to the Best Console Store in the whole universe!";
 
         public StartMenuView() : base(header)
         {

@@ -6,7 +6,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class OrderHistoryView : RepositoryView
     {
-        private static readonly string header = "Purchase history";
+        private const string header = "Purchase history";
 
         public new List<OrderMenuItemHandler> MenuItems { get; set; }
 
