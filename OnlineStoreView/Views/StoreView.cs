@@ -17,6 +17,7 @@ namespace OnlineStoreView.Views
             do
             {
                 nextMenu.Render();
+
                 if (nextMenu.Handler != null)
                 {
                     nextMenu = Activator.CreateInstance(nextMenu.Handler) as View;

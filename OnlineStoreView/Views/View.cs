@@ -6,8 +6,11 @@ namespace OnlineStoreView.Views
     public abstract class View
     {
         public string Header { get; protected set; }
+
         public Type Handler { get; protected set; }
+
         protected int Input { get; set; }
+
         protected string ErrorMessage { get; set; } = string.Empty;
 
         protected View(string header)
@@ -29,11 +32,13 @@ namespace OnlineStoreView.Views
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error("\n" + ErrorMessage);
                 ErrorMessage = string.Empty;
             }
+
             LineRenderer.Secondary("\nEnter the number of your choice:");
         }
 
@@ -43,6 +48,7 @@ namespace OnlineStoreView.Views
             {
                 ErrorMessage = "This is not a number.";
             }
+
             Input = input;
         }
 

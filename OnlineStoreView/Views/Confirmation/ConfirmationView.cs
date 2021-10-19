@@ -7,11 +7,10 @@ namespace OnlineStoreView.Views
     public abstract class ConfirmationView : View
     {
         public MenuItemHandler Yes { get; protected set; }
+
         public MenuItemHandler No { get; protected set; }
 
-        protected ConfirmationView(string header) : base(header)
-        {
-        }
+        protected ConfirmationView(string header) : base(header) { }
 
         protected abstract void OnFinish(); // TODO: now uses just in logout menu
 
@@ -44,6 +43,7 @@ namespace OnlineStoreView.Views
             LineRenderer.Primary($"1. {Yes.Caption}");
             LineRenderer.Primary($"2. {No.Caption}");
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error("\n" + ErrorMessage + "\n");
@@ -55,6 +55,7 @@ namespace OnlineStoreView.Views
             if (Input < 1 && Input > 2)
             {
                 ErrorMessage = $"Сome on, you can do it! Just {Yes.Caption} or {No.Caption}...";
+
                 return false;
             }
 

@@ -8,9 +8,7 @@ namespace OnlineStoreView.Views
     {
         public new List<MenuItemHandler> MenuItems { get; protected set; }
 
-        protected RepositoryView(string header) : base(header)
-        {
-        }
+        protected RepositoryView(string header) : base(header) { }
 
         protected abstract void OnInit(); // TODO: call to core
 
@@ -43,10 +41,12 @@ namespace OnlineStoreView.Views
             LineRenderer.Header($" > {Header}\n");
             var i = 0;
             LineRenderer.Secondary($"\n{++i}. {Back.Caption}\n");
+
             foreach (MenuItemHandler item in MenuItems)
             {
                 LineRenderer.Primary($"{++i}. {item.Caption}");
             }
+
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
         }
     }

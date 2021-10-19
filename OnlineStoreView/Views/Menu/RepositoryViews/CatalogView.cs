@@ -13,19 +13,19 @@ namespace OnlineStoreView.Views
 
         public CatalogView() : base(header)
         {
-            MenuItems = new()
-            {
-            };
+            MenuItems = new() { };
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
 
         public CatalogView(List<Product> productList) : base(header)
         {
             MenuItems = new();
+
             foreach (Product product in productList)
             {
                 MenuItems.Add(new ProductMenuItemHandler(product));
             }
+
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
 
@@ -43,6 +43,7 @@ namespace OnlineStoreView.Views
         public override void Render()
         {
             OnInit();
+
             do
             {
                 PrintMenu();
@@ -58,6 +59,7 @@ namespace OnlineStoreView.Views
             {
                 Handler = MenuItems[Input - 2].Handler;
             }
+
             OnFinish();
         }
 
@@ -67,6 +69,7 @@ namespace OnlineStoreView.Views
             LineRenderer.Header($" > {Header}\n");
             int i = 1;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
+
             if (MenuItems.Count != 0)
             {
                 foreach (ProductMenuItemHandler item in MenuItems)
@@ -81,7 +84,9 @@ namespace OnlineStoreView.Views
             {
                 LineRenderer.Warning("\nSorry, but we are not selling anything right now =(\n");
             }
+
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error(ErrorMessage + "\n");

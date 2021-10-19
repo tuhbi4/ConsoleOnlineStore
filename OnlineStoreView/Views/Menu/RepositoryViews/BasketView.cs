@@ -9,15 +9,15 @@ namespace OnlineStoreView.Views
         private static readonly string header = "Basket";
 
         public new List<ProductMenuItemHandler> MenuItems { get; set; }
+
         public MenuItemHandler Buy { get; }
+
         public MenuItemHandler Clear { get; }
 
         public BasketView() : base(header)
         {
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
-            MenuItems = new()
-            {
-            };
+            MenuItems = new() { };
             Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationView));
             Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
         }
@@ -44,6 +44,7 @@ namespace OnlineStoreView.Views
         public override void Render()
         {
             OnInit();
+
             do
             {
                 PrintMenu();
@@ -67,6 +68,7 @@ namespace OnlineStoreView.Views
             {
                 Handler = Clear.Handler;
             }
+
             OnFinish();
         }
 
@@ -76,6 +78,7 @@ namespace OnlineStoreView.Views
             LineRenderer.Header($" > {Header}\n");
             int i = 1;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
+
             if (MenuItems.Count != 0)
             {
                 foreach (ProductMenuItemHandler item in MenuItems)
@@ -85,6 +88,7 @@ namespace OnlineStoreView.Views
                     LineRenderer.Primary($"   Price : {item.Product.Price}");
                     LineRenderer.Warning($"   Quantity : {item.Product.Quantity}\n");
                 }
+
                 LineRenderer.Success($"\n{++i}. {Buy.Caption}");
                 LineRenderer.Error($"{++i}. {Clear.Caption}\n");
             }
@@ -92,7 +96,9 @@ namespace OnlineStoreView.Views
             {
                 LineRenderer.Warning("\nYour basket is empty!\n");
             }
+
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error(ErrorMessage + "\n");

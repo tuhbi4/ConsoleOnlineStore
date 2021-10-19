@@ -7,11 +7,10 @@ namespace OnlineStoreView.Views
     public abstract class MenuView : View
     {
         public MenuItemHandler Back { get; protected set; }
+
         public List<MenuItem> MenuItems { get; protected set; }
 
-        protected MenuView(string header) : base(header)
-        {
-        }
+        protected MenuView(string header) : base(header) { }
 
         public override void Render()
         {
@@ -39,11 +38,14 @@ namespace OnlineStoreView.Views
             LineRenderer.Header($" > {Header}\n");
             var i = 1;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
+
             foreach (MenuItem item in MenuItems)
             {
                 LineRenderer.Primary($"{++i}. {item.Caption}");
             }
+
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error(ErrorMessage + "\n");

@@ -7,13 +7,12 @@ namespace OnlineStoreView.Views
     public sealed class OrderHistoryView : RepositoryView
     {
         private static readonly string header = "Purchase history";
+
         public new List<OrderMenuItemHandler> MenuItems { get; set; }
 
         public OrderHistoryView() : base(header)
         {
-            MenuItems = new()
-            {
-            };
+            MenuItems = new() { };
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
 
@@ -56,6 +55,7 @@ namespace OnlineStoreView.Views
             {
                 Handler = MenuItems[Input - 2].Handler;
             }
+
             OnFinish();
         }
 
@@ -65,12 +65,14 @@ namespace OnlineStoreView.Views
             LineRenderer.Header($" > {Header}\n");
             int i = 1;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
+
             if (MenuItems.Count != 0)
             {
                 foreach (OrderMenuItemHandler order in MenuItems)
                 {
                     LineRenderer.Warning($"{++i}. {order.PurchaseDate}");
                     int j = 0;
+
                     foreach (ProductMenuItemHandler product in order.ProductList)
                     {
                         LineRenderer.Primary($"   {++j}. Product: {product.Caption}");
@@ -83,7 +85,9 @@ namespace OnlineStoreView.Views
             {
                 LineRenderer.Warning("\nYou haven't bought anything from us yet. Maybe it's time for shopping?\n");
             }
+
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error(ErrorMessage + "\n");

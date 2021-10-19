@@ -8,14 +8,16 @@ namespace OnlineStoreView.Views
     public abstract class InputView : View
     {
         public MenuItemHandler Cancel { get; protected set; }
+
         public List<MenuItem> MenuItems { get; protected set; }
+
         public Type SuccessHandler { get; protected set; }
+
         public Type ErrorHandler { get; protected set; }
+
         protected string StringInput { get; set; }
 
-        protected InputView(string header) : base(header)
-        {
-        }
+        protected InputView(string header) : base(header) { }
 
         protected abstract void OnFinish(); // TODO: call to core
 
@@ -32,6 +34,7 @@ namespace OnlineStoreView.Views
         public override void Render()
         {
             var index = 0;
+
             foreach (MenuItem item in MenuItems)
             {
                 do
@@ -60,6 +63,7 @@ namespace OnlineStoreView.Views
             LineRenderer.Header($" > {Header}\n");
             LineRenderer.Secondary($"\n1. {Cancel.Caption}");
             LineRenderer.Primary($"\n{item.Caption}: ({index}/{MenuItems.Count})\n");
+
             if (ErrorMessage != string.Empty)
             {
                 LineRenderer.Error("\n" + ErrorMessage + "\n");
@@ -69,6 +73,7 @@ namespace OnlineStoreView.Views
         public override void GetUserInput()
         {
             string stringInput = Console.ReadLine();
+
             if (!int.TryParse(stringInput, out int result) && result == 1)
             {
                 Input = result;
@@ -82,6 +87,7 @@ namespace OnlineStoreView.Views
             if (StringInput == string.Empty)
             {
                 ErrorMessage = "This field must be filled.";
+
                 return false;
             }
 

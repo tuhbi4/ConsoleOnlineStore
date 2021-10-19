@@ -8,9 +8,7 @@ namespace OnlineStoreView.Models
     {
         public Product Product { get; protected set; }
 
-        public ProductMenuItemHandler(Product product) : this(product, typeof(ProductQuantityInputView))
-        {
-        }
+        public ProductMenuItemHandler(Product product) : this(product, typeof(ProductQuantityInputView)) { }
 
         public ProductMenuItemHandler(Product product, Type handler) : base(product.Name, handler)
         {
