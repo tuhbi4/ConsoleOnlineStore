@@ -12,6 +12,7 @@ namespace OnlineStoreView.Services
         }
 
         protected abstract void OnInit(); // TODO: call to core
+
         protected abstract void OnFinish(); // TODO: call to core
 
         public override void Render()

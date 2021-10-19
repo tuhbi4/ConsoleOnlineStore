@@ -14,9 +14,6 @@ namespace OnlineStoreView.Models
         {
             MenuItems = new()
             {
-                new ProductHandlerMenuItem(new Product("0001", "Apple", "Sweet Apple", 1.99m, 2)),
-                new ProductHandlerMenuItem(new Product("0002", "Orange", "Juicy Orange", 2.99m, 1)),
-                new ProductHandlerMenuItem(new Product("0003", "Banana", "Mmm Banana", 3.99m, 1)),
             };
             Back = new HandlerMenuItem("Back", typeof(MainSelectionMenuViewModel));
         }

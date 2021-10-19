@@ -17,7 +17,6 @@ namespace OnlineStoreView.Models
             Back = new HandlerMenuItem("Back", typeof(MainSelectionMenuViewModel));
             MenuItems = new()
             {
-                new ProductHandlerMenuItem(new Product("0001", "Apple", "Sweet Apple", 1.99m, 2)),
             };
             Buy = new HandlerMenuItem("Buy", typeof(CompleteOrderConfirmationMenuViewModel));
             Clear = new HandlerMenuItem("Clear", typeof(MainSelectionMenuViewModel));
