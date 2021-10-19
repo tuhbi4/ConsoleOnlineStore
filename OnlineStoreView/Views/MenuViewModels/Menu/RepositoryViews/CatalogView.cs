@@ -1,31 +1,32 @@
 ﻿using System.Collections.Generic;
 using ConsoleOnlineStore.Models.Repositories;
-using OnlineStoreView.Services;
+using OnlineStoreView.Models;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Models
+namespace OnlineStoreView.Views
 {
-    public sealed class CatalogRepositorySelectionMenuViewModel : RepositorySelectionMenuViewModel
+    public sealed class CatalogView : RepositoryView
     {
         private static readonly string header = "Catalog";
 
         public new List<ProductHandlerMenuItem> MenuItems { get; set; }
 
-        public CatalogRepositorySelectionMenuViewModel() : base(header)
+        public CatalogView() : base(header)
         {
             MenuItems = new()
             {
             };
-            Back = new HandlerMenuItem("Back", typeof(MainSelectionMenuViewModel));
+            Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
 
-        public CatalogRepositorySelectionMenuViewModel(List<Product> productList) : base(header)
+        public CatalogView(List<Product> productList) : base(header)
         {
             MenuItems = new();
             foreach (Product product in productList)
             {
                 MenuItems.Add(new ProductHandlerMenuItem(product));
             }
-            Back = new HandlerMenuItem("Back", typeof(MainSelectionMenuViewModel));
+            Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
 
         protected override void OnInit()
@@ -62,28 +63,28 @@ namespace OnlineStoreView.Models
 
         public override void PrintMenu()
         {
-            PrintLineService.Clear();
-            PrintLineService.Header($" > {Header}\n");
+            LineRenderer.Clear();
+            LineRenderer.Header($" > {Header}\n");
             int i = 1;
-            PrintLineService.Secondary($"\n{i}. {Back.Caption}\n");
+            LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
             if (MenuItems.Count != 0)
             {
                 foreach (ProductHandlerMenuItem item in MenuItems)
                 {
-                    PrintLineService.Information($"\n{++i}. {item.Caption}");
-                    PrintLineService.Secondary($"   << {item.Product.Description} >>");
-                    PrintLineService.Primary($"   Price : {item.Product.Price}");
-                    PrintLineService.Warning($"   In stock : {item.Product.Quantity}\n");
+                    LineRenderer.Information($"\n{++i}. {item.Caption}");
+                    LineRenderer.Secondary($"   << {item.Product.Description} >>");
+                    LineRenderer.Primary($"   Price : {item.Product.Price}");
+                    LineRenderer.Warning($"   In stock : {item.Product.Quantity}\n");
                 }
             }
             else
             {
-                PrintLineService.Warning("\nSorry, but we are not selling anything right now =(\n");
+                LineRenderer.Warning("\nSorry, but we are not selling anything right now =(\n");
             }
-            PrintLineService.Secondary("\nEnter the number of your choice:\n");
+            LineRenderer.Secondary("\nEnter the number of your choice:\n");
             if (ErrorMessage != string.Empty)
             {
-                PrintLineService.Error(ErrorMessage + "\n");
+                LineRenderer.Error(ErrorMessage + "\n");
                 ErrorMessage = string.Empty;
             }
         }

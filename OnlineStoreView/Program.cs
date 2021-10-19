@@ -1,4 +1,4 @@
-﻿using OnlineStoreView.ViewModels;
+﻿using OnlineStoreView.Views;
 
 namespace OnlineStoreView
 {
@@ -6,7 +6,7 @@ namespace OnlineStoreView
     {
         private static void Main()
         {
-            ViewModel viewModel = new();
+            StoreView viewModel = new();
             viewModel.Init();
         }
     }

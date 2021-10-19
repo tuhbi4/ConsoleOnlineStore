@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnlineStoreView.Models
 {
-    public class BasketHandlerMenuItem : HandlerMenuItem
+    public class BasketHandlerMenuItem : MenuItemHandler
     {
         public List<ProductHandlerMenuItem> ProductList { get; set; }
 

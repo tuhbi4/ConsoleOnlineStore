@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace OnlineStoreView.Services
+namespace OnlineStoreView.Renderers
 {
-    public static class PrintLineService
+    public static class LineRenderer
     {
         public static void Clear()
         {

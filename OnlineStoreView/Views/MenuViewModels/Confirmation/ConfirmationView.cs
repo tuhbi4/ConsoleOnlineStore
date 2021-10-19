@@ -1,14 +1,15 @@
 ﻿using System;
 using OnlineStoreView.Models;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Services
+namespace OnlineStoreView.Views
 {
-    public abstract class ConfirmationMenuViewModel : MenuViewModel
+    public abstract class ConfirmationView : View
     {
-        public HandlerMenuItem Yes { get; protected set; }
-        public HandlerMenuItem No { get; protected set; }
+        public MenuItemHandler Yes { get; protected set; }
+        public MenuItemHandler No { get; protected set; }
 
-        protected ConfirmationMenuViewModel(string header) : base(header)
+        protected ConfirmationView(string header) : base(header)
         {
         }
 
@@ -38,14 +39,14 @@ namespace OnlineStoreView.Services
         public override void PrintMenu()
         {
             Console.Clear();
-            PrintLineService.Header($" > {Header}\n");
-            PrintLineService.Warning($"\nAre you sure you want {Header.ToLowerInvariant()}?\n");
-            PrintLineService.Primary($"1. {Yes.Caption}");
-            PrintLineService.Primary($"2. {No.Caption}");
-            PrintLineService.Secondary("\nEnter the number of your choice:\n");
+            LineRenderer.Header($" > {Header}\n");
+            LineRenderer.Warning($"\nAre you sure you want {Header.ToLowerInvariant()}?\n");
+            LineRenderer.Primary($"1. {Yes.Caption}");
+            LineRenderer.Primary($"2. {No.Caption}");
+            LineRenderer.Secondary("\nEnter the number of your choice:\n");
             if (ErrorMessage != string.Empty)
             {
-                PrintLineService.Error("\n" + ErrorMessage + "\n");
+                LineRenderer.Error("\n" + ErrorMessage + "\n");
             }
         }
 

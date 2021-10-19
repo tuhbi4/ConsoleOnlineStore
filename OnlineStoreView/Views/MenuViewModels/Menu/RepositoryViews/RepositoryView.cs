@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using OnlineStoreView.Models;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Services
+namespace OnlineStoreView.Views
 {
-    public abstract class RepositorySelectionMenuViewModel : SelectionMenuViewModel
+    public abstract class RepositoryView : MenuView
     {
-        public new List<HandlerMenuItem> MenuItems { get; protected set; }
+        public new List<MenuItemHandler> MenuItems { get; protected set; }
 
-        protected RepositorySelectionMenuViewModel(string header) : base(header)
+        protected RepositoryView(string header) : base(header)
         {
         }
 
@@ -38,15 +39,15 @@ namespace OnlineStoreView.Services
 
         public override void PrintMenu()
         {
-            PrintLineService.Clear();
-            PrintLineService.Header($" > {Header}\n");
+            LineRenderer.Clear();
+            LineRenderer.Header($" > {Header}\n");
             var i = 0;
-            PrintLineService.Secondary($"\n{++i}. {Back.Caption}\n");
-            foreach (HandlerMenuItem item in MenuItems)
+            LineRenderer.Secondary($"\n{++i}. {Back.Caption}\n");
+            foreach (MenuItemHandler item in MenuItems)
             {
-                PrintLineService.Primary($"{++i}. {item.Caption}");
+                LineRenderer.Primary($"{++i}. {item.Caption}");
             }
-            PrintLineService.Secondary("\nEnter the number of your choice:\n");
+            LineRenderer.Secondary("\nEnter the number of your choice:\n");
         }
     }
 }

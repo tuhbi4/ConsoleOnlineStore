@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using OnlineStoreView.Models;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Services
+namespace OnlineStoreView.Views
 {
-    public abstract class SelectionMenuViewModel : MenuViewModel
+    public abstract class MenuView : View
     {
-        public HandlerMenuItem Back { get; protected set; }
+        public MenuItemHandler Back { get; protected set; }
         public List<MenuItem> MenuItems { get; protected set; }
 
-        protected SelectionMenuViewModel(string header) : base(header)
+        protected MenuView(string header) : base(header)
         {
         }
 
@@ -27,25 +28,25 @@ namespace OnlineStoreView.Services
             }
             else if (Input > 1 && Input <= MenuItems.Count + 1)
             {
-                HandlerMenuItem item = MenuItems[Input - 2] as HandlerMenuItem;
+                MenuItemHandler item = MenuItems[Input - 2] as MenuItemHandler;
                 Handler = item.Handler;
             }
         }
 
         public override void PrintMenu()
         {
-            PrintLineService.Clear();
-            PrintLineService.Header($" > {Header}\n");
+            LineRenderer.Clear();
+            LineRenderer.Header($" > {Header}\n");
             var i = 1;
-            PrintLineService.Secondary($"\n{i}. {Back.Caption}\n");
+            LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
             foreach (MenuItem item in MenuItems)
             {
-                PrintLineService.Primary($"{++i}. {item.Caption}");
+                LineRenderer.Primary($"{++i}. {item.Caption}");
             }
-            PrintLineService.Secondary("\nEnter the number of your choice:\n");
+            LineRenderer.Secondary("\nEnter the number of your choice:\n");
             if (ErrorMessage != string.Empty)
             {
-                PrintLineService.Error(ErrorMessage + "\n");
+                LineRenderer.Error(ErrorMessage + "\n");
                 ErrorMessage = string.Empty;
             }
         }

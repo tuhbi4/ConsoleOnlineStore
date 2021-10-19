@@ -1,21 +1,21 @@
-﻿using OnlineStoreView.Services;
+﻿using OnlineStoreView.Models;
 
-namespace OnlineStoreView.Models
+namespace OnlineStoreView.Views
 {
-    public sealed class AuthorizationInputMenuViewModel : InputMenuViewModel
+    public sealed class AuthorizationInputMenuViewModel : InputView
     {
         private static readonly string header = "Enter your account details for log in";
 
         public AuthorizationInputMenuViewModel() : base(header)
         {
-            Cancel = new HandlerMenuItem("Cancel", typeof(StartSelectionMenuViewModel));
+            Cancel = new MenuItemHandler("Cancel", typeof(StartMenuView));
             MenuItems = new()
             {
                 new MenuItem("Enter login"),
                 new MenuItem("Enter password"),
             };
-            SuccessHandler = typeof(MainSelectionMenuViewModel);
-            ErrorHandler = typeof(StartSelectionMenuViewModel);
+            SuccessHandler = typeof(MainMenuView);
+            ErrorHandler = typeof(StartMenuView);
         }
 
         protected override void OnFinish()

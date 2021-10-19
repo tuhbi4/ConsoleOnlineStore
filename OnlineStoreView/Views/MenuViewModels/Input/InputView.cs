@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using OnlineStoreView.Models;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Services
+namespace OnlineStoreView.Views
 {
-    public abstract class InputMenuViewModel : MenuViewModel
+    public abstract class InputView : View
     {
-        public HandlerMenuItem Cancel { get; protected set; }
+        public MenuItemHandler Cancel { get; protected set; }
         public List<MenuItem> MenuItems { get; protected set; }
         public Type SuccessHandler { get; protected set; }
         public Type ErrorHandler { get; protected set; }
         protected string StringInput { get; set; }
 
-        protected InputMenuViewModel(string header) : base(header)
+        protected InputView(string header) : base(header)
         {
         }
 
@@ -55,13 +56,13 @@ namespace OnlineStoreView.Services
 
         public virtual void PrintMenu(int index, MenuItem item)
         {
-            PrintLineService.Clear();
-            PrintLineService.Header($" > {Header}\n");
-            PrintLineService.Secondary($"\n1. {Cancel.Caption}");
-            PrintLineService.Primary($"\n{item.Caption}: ({index}/{MenuItems.Count})\n");
+            LineRenderer.Clear();
+            LineRenderer.Header($" > {Header}\n");
+            LineRenderer.Secondary($"\n1. {Cancel.Caption}");
+            LineRenderer.Primary($"\n{item.Caption}: ({index}/{MenuItems.Count})\n");
             if (ErrorMessage != string.Empty)
             {
-                PrintLineService.Error("\n" + ErrorMessage + "\n");
+                LineRenderer.Error("\n" + ErrorMessage + "\n");
             }
         }
 

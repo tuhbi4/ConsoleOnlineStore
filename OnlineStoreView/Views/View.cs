@@ -1,16 +1,16 @@
 ﻿using System;
-using OnlineStoreView.Services;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Models
+namespace OnlineStoreView.Views
 {
-    public abstract class MenuViewModel
+    public abstract class View
     {
         public string Header { get; protected set; }
         public Type Handler { get; protected set; }
         protected int Input { get; set; }
         protected string ErrorMessage { get; set; } = string.Empty;
 
-        protected MenuViewModel(string header)
+        protected View(string header)
         {
             Header = header;
         }
@@ -27,14 +27,14 @@ namespace OnlineStoreView.Models
 
         public virtual void PrintMenu()
         {
-            PrintLineService.Clear();
-            PrintLineService.Header($" > {Header}\n");
+            LineRenderer.Clear();
+            LineRenderer.Header($" > {Header}\n");
             if (ErrorMessage != string.Empty)
             {
-                PrintLineService.Error("\n" + ErrorMessage);
+                LineRenderer.Error("\n" + ErrorMessage);
                 ErrorMessage = string.Empty;
             }
-            PrintLineService.Secondary("\nEnter the number of your choice:");
+            LineRenderer.Secondary("\nEnter the number of your choice:");
         }
 
         public virtual void GetUserInput()

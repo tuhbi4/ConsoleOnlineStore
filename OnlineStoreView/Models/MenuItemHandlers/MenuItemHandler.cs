@@ -2,11 +2,11 @@
 
 namespace OnlineStoreView.Models
 {
-    public class HandlerMenuItem : MenuItem
+    public class MenuItemHandler : MenuItem
     {
         public Type Handler { get; protected set; }
 
-        public HandlerMenuItem(string caption, Type handler) : base(caption)
+        public MenuItemHandler(string caption, Type handler) : base(caption)
         {
             Handler = handler;
         }

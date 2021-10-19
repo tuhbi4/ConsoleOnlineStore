@@ -1,33 +1,33 @@
 ﻿using System.Collections.Generic;
-using ConsoleOnlineStore.Models.Repositories;
-using OnlineStoreView.Services;
+using OnlineStoreView.Models;
+using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Models
+namespace OnlineStoreView.Views
 {
-    public sealed class BasketRepositorySelectionMenuViewModel : RepositorySelectionMenuViewModel
+    public sealed class BasketView : RepositoryView
     {
         private static readonly string header = "Basket";
 
         public new List<ProductHandlerMenuItem> MenuItems { get; set; }
-        public HandlerMenuItem Buy { get; }
-        public HandlerMenuItem Clear { get; }
+        public MenuItemHandler Buy { get; }
+        public MenuItemHandler Clear { get; }
 
-        public BasketRepositorySelectionMenuViewModel() : base(header)
+        public BasketView() : base(header)
         {
-            Back = new HandlerMenuItem("Back", typeof(MainSelectionMenuViewModel));
+            Back = new MenuItemHandler("Back", typeof(MainMenuView));
             MenuItems = new()
             {
             };
-            Buy = new HandlerMenuItem("Buy", typeof(CompleteOrderConfirmationMenuViewModel));
-            Clear = new HandlerMenuItem("Clear", typeof(MainSelectionMenuViewModel));
+            Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationMenuViewModel));
+            Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
         }
 
-        public BasketRepositorySelectionMenuViewModel(BasketHandlerMenuItem basket) : base(header)
+        public BasketView(BasketHandlerMenuItem basket) : base(header)
         {
-            Back = new HandlerMenuItem("Back", typeof(MainSelectionMenuViewModel));
+            Back = new MenuItemHandler("Back", typeof(MainMenuView));
             MenuItems = basket.ProductList;
-            Buy = new HandlerMenuItem("Buy", typeof(CompleteOrderConfirmationMenuViewModel));
-            Clear = new HandlerMenuItem("Clear", typeof(MainSelectionMenuViewModel));
+            Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationMenuViewModel));
+            Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
         }
 
         protected override void OnInit()
@@ -72,30 +72,30 @@ namespace OnlineStoreView.Models
 
         public override void PrintMenu()
         {
-            PrintLineService.Clear();
-            PrintLineService.Header($" > {Header}\n");
+            LineRenderer.Clear();
+            LineRenderer.Header($" > {Header}\n");
             int i = 1;
-            PrintLineService.Secondary($"\n{i}. {Back.Caption}\n");
+            LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
             if (MenuItems.Count != 0)
             {
                 foreach (ProductHandlerMenuItem item in MenuItems)
                 {
-                    PrintLineService.Information($"{++i}. {item.Caption}");
-                    PrintLineService.Secondary($"   << {item.Product.Description} >>");
-                    PrintLineService.Primary($"   Price : {item.Product.Price}");
-                    PrintLineService.Warning($"   Quantity : {item.Product.Quantity}\n");
+                    LineRenderer.Information($"{++i}. {item.Caption}");
+                    LineRenderer.Secondary($"   << {item.Product.Description} >>");
+                    LineRenderer.Primary($"   Price : {item.Product.Price}");
+                    LineRenderer.Warning($"   Quantity : {item.Product.Quantity}\n");
                 }
-                PrintLineService.Success($"\n{++i}. {Buy.Caption}");
-                PrintLineService.Error($"{++i}. {Clear.Caption}\n");
+                LineRenderer.Success($"\n{++i}. {Buy.Caption}");
+                LineRenderer.Error($"{++i}. {Clear.Caption}\n");
             }
             else
             {
-                PrintLineService.Warning("\nYour basket is empty!\n");
+                LineRenderer.Warning("\nYour basket is empty!\n");
             }
-            PrintLineService.Secondary("\nEnter the number of your choice:\n");
+            LineRenderer.Secondary("\nEnter the number of your choice:\n");
             if (ErrorMessage != string.Empty)
             {
-                PrintLineService.Error(ErrorMessage + "\n");
+                LineRenderer.Error(ErrorMessage + "\n");
                 ErrorMessage = string.Empty;
             }
         }
