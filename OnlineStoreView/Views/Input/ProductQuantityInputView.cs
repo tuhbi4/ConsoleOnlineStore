@@ -2,11 +2,11 @@
 
 namespace OnlineStoreView.Views
 {
-    public class ProductQuantityInputMenuViewModel : InputView
+    public class ProductQuantityInputView : InputView
     {
         private static readonly string header = "Aadding a product to the basket";
 
-        public ProductQuantityInputMenuViewModel() : base(header)
+        public ProductQuantityInputView() : base(header)
         {
             Cancel = new MenuItemHandler("Cancel", typeof(CatalogView));
             MenuItems = new()
@@ -14,7 +14,7 @@ namespace OnlineStoreView.Views
                 new MenuItem("Enter quantity"),
             };
             SuccessHandler = typeof(CatalogView);
-            ErrorHandler = typeof(ProductQuantityInputMenuViewModel);
+            ErrorHandler = typeof(ProductQuantityInputView);
         }
 
         protected override void OnFinish()

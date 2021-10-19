@@ -4,15 +4,15 @@ using OnlineStoreView.Views;
 
 namespace OnlineStoreView.Models
 {
-    public class ProductHandlerMenuItem : MenuItemHandler
+    public class ProductMenuItemHandler : MenuItemHandler
     {
         public Product Product { get; protected set; }
 
-        public ProductHandlerMenuItem(Product product) : this(product, typeof(ProductQuantityInputMenuViewModel))
+        public ProductMenuItemHandler(Product product) : this(product, typeof(ProductQuantityInputView))
         {
         }
 
-        public ProductHandlerMenuItem(Product product, Type handler) : base(product.Name, handler)
+        public ProductMenuItemHandler(Product product, Type handler) : base(product.Name, handler)
         {
             Product = product;
         }

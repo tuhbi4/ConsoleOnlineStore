@@ -8,11 +8,11 @@ namespace OnlineStoreView.Views
 
         public StartMenuView() : base(header)
         {
-            Back = new MenuItemHandler("Exit", typeof(ExitConfirmationMenuViewModel));
+            Back = new MenuItemHandler("Exit", typeof(ExitConfirmationView));
             MenuItems = new()
             {
-                new MenuItemHandler("Log in", typeof(AuthorizationInputMenuViewModel)),
-                new MenuItemHandler("Create an account", typeof(RegistrationInputMenuViewModel)),
+                new MenuItemHandler("Log in", typeof(AuthorizationInputView)),
+                new MenuItemHandler("Create an account", typeof(RegistrationInputView)),
             };
         }
     }

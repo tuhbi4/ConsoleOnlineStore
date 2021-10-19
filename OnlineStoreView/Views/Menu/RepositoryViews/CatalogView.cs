@@ -9,7 +9,7 @@ namespace OnlineStoreView.Views
     {
         private static readonly string header = "Catalog";
 
-        public new List<ProductHandlerMenuItem> MenuItems { get; set; }
+        public new List<ProductMenuItemHandler> MenuItems { get; set; }
 
         public CatalogView() : base(header)
         {
@@ -24,7 +24,7 @@ namespace OnlineStoreView.Views
             MenuItems = new();
             foreach (Product product in productList)
             {
-                MenuItems.Add(new ProductHandlerMenuItem(product));
+                MenuItems.Add(new ProductMenuItemHandler(product));
             }
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
@@ -69,7 +69,7 @@ namespace OnlineStoreView.Views
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
             if (MenuItems.Count != 0)
             {
-                foreach (ProductHandlerMenuItem item in MenuItems)
+                foreach (ProductMenuItemHandler item in MenuItems)
                 {
                     LineRenderer.Information($"\n{++i}. {item.Caption}");
                     LineRenderer.Secondary($"   << {item.Product.Description} >>");

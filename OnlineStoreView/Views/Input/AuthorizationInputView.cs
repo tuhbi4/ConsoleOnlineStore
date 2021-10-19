@@ -2,17 +2,17 @@
 
 namespace OnlineStoreView.Views
 {
-    public class RegistrationInputMenuViewModel : InputView
+    public sealed class AuthorizationInputView : InputView
     {
-        private static readonly string header = "Enter the details to create a new account";
+        private static readonly string header = "Enter your account details for log in";
 
-        public RegistrationInputMenuViewModel() : base(header)
+        public AuthorizationInputView() : base(header)
         {
             Cancel = new MenuItemHandler("Cancel", typeof(StartMenuView));
             MenuItems = new()
             {
-                new MenuItem("Come up with a login"),
-                new MenuItem("Come up with a password"),
+                new MenuItem("Enter login"),
+                new MenuItem("Enter password"),
             };
             SuccessHandler = typeof(MainMenuView);
             ErrorHandler = typeof(StartMenuView);
@@ -20,7 +20,7 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            if (true) // TODO: implement call to account repository for register
+            if (true) // TODO: implement call to account repository for log in
             {
                 OnSuccess();
             }

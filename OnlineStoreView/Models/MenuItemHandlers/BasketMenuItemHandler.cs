@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace OnlineStoreView.Models
 {
-    public class BasketHandlerMenuItem : MenuItemHandler
+    public class BasketMenuItemHandler : MenuItemHandler
     {
-        public List<ProductHandlerMenuItem> ProductList { get; set; }
+        public List<ProductMenuItemHandler> ProductList { get; set; }
 
-        public BasketHandlerMenuItem(string caption, Type linkedMenuType, List<ProductHandlerMenuItem> productList) : base(caption, linkedMenuType)
+        public BasketMenuItemHandler(string caption, Type linkedMenuType, List<ProductMenuItemHandler> productList) : base(caption, linkedMenuType)
         {
             ProductList = productList;
         }

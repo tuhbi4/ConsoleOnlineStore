@@ -4,32 +4,35 @@ using OnlineStoreView.Renderers;
 
 namespace OnlineStoreView.Views
 {
-    public sealed class OrderHistoryView : RepositoryView
+    public sealed class BasketView : RepositoryView
     {
-        private static readonly string header = "Purchase history";
-        public new List<OrderBasketHandlerMenuItem> MenuItems { get; set; }
+        private static readonly string header = "Basket";
 
-        public OrderHistoryView() : base(header)
+        public new List<ProductMenuItemHandler> MenuItems { get; set; }
+        public MenuItemHandler Buy { get; }
+        public MenuItemHandler Clear { get; }
+
+        public BasketView() : base(header)
         {
+            Back = new MenuItemHandler("Back", typeof(MainMenuView));
             MenuItems = new()
             {
             };
-            Back = new MenuItemHandler("Back", typeof(MainMenuView));
+            Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationView));
+            Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
         }
 
-        public OrderHistoryView(List<OrderBasketHandlerMenuItem> orderList) : base(header)
+        public BasketView(BasketMenuItemHandler basket) : base(header)
         {
-            MenuItems = new();
-            foreach (OrderBasketHandlerMenuItem order in orderList)
-            {
-                MenuItems.Add(new OrderBasketHandlerMenuItem(order.Caption, typeof(CompleteOrderConfirmationMenuViewModel), order.AccountId, order.ProductList, order.PurchaseDate));
-            }
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
+            MenuItems = basket.ProductList;
+            Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationView));
+            Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
         }
 
         protected override void OnInit()
         {
-            // TODO: Call to product order repository
+            // TODO: Call to basket repository
             // MenuItems = new() { //...// };
         }
 
@@ -56,6 +59,14 @@ namespace OnlineStoreView.Views
             {
                 Handler = MenuItems[Input - 2].Handler;
             }
+            else if (Input == MenuItems.Count + 2)
+            {
+                Handler = Buy.Handler;
+            }
+            else if (Input == MenuItems.Count + 3)
+            {
+                Handler = Clear.Handler;
+            }
             OnFinish();
         }
 
@@ -67,21 +78,19 @@ namespace OnlineStoreView.Views
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
             if (MenuItems.Count != 0)
             {
-                foreach (OrderBasketHandlerMenuItem order in MenuItems)
+                foreach (ProductMenuItemHandler item in MenuItems)
                 {
-                    LineRenderer.Warning($"{++i}. {order.PurchaseDate}");
-                    int j = 0;
-                    foreach (ProductHandlerMenuItem product in order.ProductList)
-                    {
-                        LineRenderer.Primary($"   {++j}. Product: {product.Caption}");
-                        LineRenderer.Primary($"      Price : {product.Product.Price}");
-                        LineRenderer.Primary($"      Quantity : {product.Product.Quantity}\n");
-                    }
+                    LineRenderer.Information($"{++i}. {item.Caption}");
+                    LineRenderer.Secondary($"   << {item.Product.Description} >>");
+                    LineRenderer.Primary($"   Price : {item.Product.Price}");
+                    LineRenderer.Warning($"   Quantity : {item.Product.Quantity}\n");
                 }
+                LineRenderer.Success($"\n{++i}. {Buy.Caption}");
+                LineRenderer.Error($"{++i}. {Clear.Caption}\n");
             }
             else
             {
-                LineRenderer.Warning("\nYou haven't bought anything from us yet. Maybe it's time for shopping?\n");
+                LineRenderer.Warning("\nYour basket is empty!\n");
             }
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
             if (ErrorMessage != string.Empty)
@@ -93,7 +102,7 @@ namespace OnlineStoreView.Views
 
         public override bool IsValidUserInput()
         {
-            if (Input < 1 || Input > MenuItems.Count + 1)
+            if (Input < 1 || Input > MenuItems.Count + 3)
             {
                 if (ErrorMessage == string.Empty)
                 {

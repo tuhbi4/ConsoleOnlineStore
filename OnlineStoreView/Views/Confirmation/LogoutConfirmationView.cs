@@ -2,11 +2,11 @@
 
 namespace OnlineStoreView.Views
 {
-    public sealed class LogoutConfirmationMenuViewModel : ConfirmationView
+    public sealed class LogoutConfirmationView : ConfirmationView
     {
         private static readonly string header = "Log out";
 
-        public LogoutConfirmationMenuViewModel() : base(header)
+        public LogoutConfirmationView() : base(header)
         {
             Yes = new MenuItemHandler("Yes", typeof(StartMenuView));
             No = new MenuItemHandler("No", typeof(MainMenuView));

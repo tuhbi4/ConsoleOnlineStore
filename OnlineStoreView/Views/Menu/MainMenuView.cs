@@ -14,7 +14,7 @@ namespace OnlineStoreView.Views
                 new MenuItemHandler("View catalog", typeof(CatalogView)),
                 new MenuItemHandler("View basket", typeof(BasketView)),
                 new MenuItemHandler("View purchase history", typeof(OrderHistoryView)),
-                new MenuItemHandler("Log out", typeof(LogoutConfirmationMenuViewModel)),
+                new MenuItemHandler("Log out", typeof(LogoutConfirmationView)),
             };
         }
 

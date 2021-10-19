@@ -2,11 +2,11 @@
 
 namespace OnlineStoreView.Views
 {
-    public sealed class CompleteOrderConfirmationMenuViewModel : ConfirmationView
+    public sealed class CompleteOrderConfirmationView : ConfirmationView
     {
         private static readonly string header = "Complete order";
 
-        public CompleteOrderConfirmationMenuViewModel() : base(header)
+        public CompleteOrderConfirmationView() : base(header)
         {
             Yes = new MenuItemHandler("Yes", typeof(BasketView));
             No = new MenuItemHandler("No", typeof(BasketView));
