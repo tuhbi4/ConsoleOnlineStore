@@ -4,9 +4,9 @@ Console project "Console online store"
 
 ***
 ## Project status
-![](https://img.shields.io/badge/project%20completed-40%25-yellow)
+![](https://img.shields.io/badge/project%20completed-80%25-green)
 ![](https://img.shields.io/badge/build-success-success)
-![](https://img.shields.io/badge/manual%20testing-fail-critical)
+![](https://img.shields.io/badge/manual%20testing-pass-yellow)
 ![](https://img.shields.io/badge/coverage%20-0%25-critical)
 ![](https://img.shields.io/badge/documentation-0%25-critical)
 ***
@@ -24,9 +24,9 @@ Console project "Console online store"
   - [X] Working with database
   - [X] Account
   - [X] Basket
-- [ ] View project ready
+- [X] View project ready
 - [ ] Controller ready:
-  - [ ] View controller
+  - [X] View controller
   - [ ] Core controller
   - [ ] General controller
 - [ ] Extra functionality:
