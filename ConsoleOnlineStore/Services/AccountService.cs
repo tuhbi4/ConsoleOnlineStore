@@ -8,8 +8,8 @@ namespace ConsoleOnlineStore.Services
     public class AccountService : IAccountService
     {
         private readonly IRepository<Account> accountRepository;
-
         private readonly IHashService md5Hash;
+        private List<Account> accountList;
 
         public AccountService(IHashService md5Hash, IRepository<Account> accountRepository)
         {
@@ -19,6 +19,7 @@ namespace ConsoleOnlineStore.Services
 
         public int TryLogIn(string login, string password)
         {
+            accountList = accountRepository.Read();
             if (IsAccountFound(login, password))
             {
                 return 1;
@@ -33,9 +34,11 @@ namespace ConsoleOnlineStore.Services
 
         public int TryRegister(string login, string password)
         {
+            accountList = accountRepository.Read();
             if (!IsAccountFound(login, password))
             {
-                accountRepository.Create(new Account(login, md5Hash.GetHash(password)));
+                accountList.Add(new Account(login, md5Hash.GetHash(password)));
+                accountRepository.Create(accountList);
 
                 return 1;
             }
@@ -49,17 +52,24 @@ namespace ConsoleOnlineStore.Services
 
         private bool IsAccountFound(string login, string password)
         {
-            List<Account> accountList = accountRepository.Read();
-            Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
+            if (accountList != null)
+            {
+                Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
 
-            return accountForMatching != null && accountForMatching.Password == md5Hash.GetHash(password);
+                return accountForMatching != null && accountForMatching.Password == md5Hash.GetHash(password);
+            }
+
+            return false;
         }
 
         private bool IsLoginExist(string login)
         {
-            List<Account> accountList = accountRepository.Read();
+            if (accountList != null)
+            {
+                return accountList.Exists(item => item.Login == login);
+            }
 
-            return accountList.Exists(item => item.Login == login);
+            return false;
         }
     }
 }

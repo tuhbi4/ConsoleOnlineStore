@@ -11,11 +11,11 @@ namespace OnlineStoreView.Views
 
         public List<MenuItem> MenuItems { get; protected set; }
 
+        public List<string> Inputs { get; protected set; }
+
         public Type SuccessHandler { get; protected set; }
 
         public Type ErrorHandler { get; protected set; }
-
-        protected string StringInput { get; set; }
 
         protected InputView(string header) : base(header) { }
 
@@ -26,14 +26,18 @@ namespace OnlineStoreView.Views
             Handler = SuccessHandler;
         }
 
-        protected virtual void OnError()
+        protected virtual void OnError(int opCode)
         {
-            Handler = ErrorHandler;
+            if (opCode != 1)
+            {
+                Handler = ErrorHandler;
+            }
         }
 
         public override void Render()
         {
             var index = 0;
+            Inputs = new();
 
             foreach (MenuItem item in MenuItems)
             {
@@ -44,14 +48,14 @@ namespace OnlineStoreView.Views
                 }
                 while (!IsValidUserInput());
 
-                if (Input == 1)
+                if (Input == 0)
                 {
                     Handler = Cancel.Handler;
                     break;
                 }
             }
 
-            if (Input != 1)
+            if (Input != 0)
             {
                 OnFinish();
             }
@@ -61,7 +65,7 @@ namespace OnlineStoreView.Views
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
-            LineRenderer.Secondary($"\n1. {Cancel.Caption}");
+            LineRenderer.Secondary($"\n0. {Cancel.Caption}");
             LineRenderer.Primary($"\n{item.Caption}: ({index}/{MenuItems.Count})\n");
 
             if (ErrorMessage != string.Empty)
@@ -74,17 +78,21 @@ namespace OnlineStoreView.Views
         {
             string stringInput = Console.ReadLine();
 
-            if (!int.TryParse(stringInput, out int result) && result == 1)
+            if (stringInput == "0")
             {
-                Input = result;
+                Input = 0;
+            }
+            else
+            {
+                Input = -1;
             }
 
-            StringInput = stringInput;
+            Inputs.Add(stringInput);
         }
 
         public override bool IsValidUserInput()
         {
-            if (StringInput == string.Empty)
+            if (Inputs[^1] == string.Empty)
             {
                 ErrorMessage = "This field must be filled.";
 

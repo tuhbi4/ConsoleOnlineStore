@@ -1,0 +1,8 @@
+[
+  {
+    "ProductsJsonPath": "..\\..\\..\\..\\ConsoleOnlineStore\\data\\products.json",
+    "AccountsJsonPath": "..\\..\\..\\..\\ConsoleOnlineStore\\data\\accounts.json",
+    "OrderJsonPath": "..\\..\\..\\..\\ConsoleOnlineStore\\data\\order.json",
+    "TimerTimeOut": 10000
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "AccountId": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      }
+    ],
+    "PurchaseDate": "2021-10-20T08:41:44.5439753Z"
+  },
+  {
+    "AccountId": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      }
+    ],
+    "PurchaseDate": "2021-10-20T08:45:44.544044Z"
+  },
+  {
+    "AccountId": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      }
+    ],
+    "PurchaseDate": "2021-10-20T08:49:44.5440486Z"
+  }
+]

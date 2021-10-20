@@ -11,11 +11,11 @@ namespace ConsoleOnlineStore.Models.Repositories
 
         public DateTime PurchaseDate { get; }
 
-        public Order(string accountID, List<Product> productList)
+        public Order(string accountID, List<Product> productList, DateTime purchaseDate)
         {
             AccountId = accountID;
             ProductList = productList;
-            PurchaseDate = DateTime.UtcNow;
+            PurchaseDate = purchaseDate;
         }
     }
 }

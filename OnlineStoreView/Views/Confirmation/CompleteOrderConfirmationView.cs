@@ -1,4 +1,7 @@
-﻿using OnlineStoreView.Models;
+﻿using System.Collections.Generic;
+using ConsoleOnlineStore;
+using ConsoleOnlineStore.Models.Repositories;
+using OnlineStoreView.Models;
 
 namespace OnlineStoreView.Views
 {
@@ -14,7 +17,9 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            // TODO: implement log out
+            List<Product> missingProducts = new();
+            StoreService.CompleteOrder(out missingProducts);
+            // TODO: show a message about the change in the number of products in the catalog
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using OnlineStoreView.Models;
+﻿using ConsoleOnlineStore;
+using OnlineStoreView.Models;
 
 namespace OnlineStoreView.Views
 {
@@ -20,13 +21,15 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            if (true) // TODO: implement call to account repository for log in
+            int opCode = StoreService.TryLogin(Inputs[0], Inputs[1]);
+            if (opCode == 1)
             {
                 OnSuccess();
             }
             else
             {
-                OnError();
+                ErrorMessage = "Error";
+                OnError(opCode);
             }
         }
     }

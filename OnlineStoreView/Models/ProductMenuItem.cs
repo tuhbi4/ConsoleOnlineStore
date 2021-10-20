@@ -1,13 +1,12 @@
 ﻿using ConsoleOnlineStore.Models.Repositories;
-using OnlineStoreView.Views;
 
 namespace OnlineStoreView.Models
 {
-    public class ProductMenuItemHandler : MenuItemHandler
+    public class ProductMenuItem : MenuItem
     {
         public Product Product { get; protected set; }
 
-        public ProductMenuItemHandler(Product product) : base(product.Name, typeof(ProductQuantityInputView))
+        public ProductMenuItem(Product product) : base(product.Name)
         {
             Product = product;
         }

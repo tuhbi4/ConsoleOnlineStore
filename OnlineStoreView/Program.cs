@@ -6,8 +6,8 @@ namespace OnlineStoreView
     {
         private static void Main()
         {
-            StoreView viewModel = new();
-            viewModel.Init();
+            StoreView storeView = new();
+            storeView.Init();
         }
     }
 }

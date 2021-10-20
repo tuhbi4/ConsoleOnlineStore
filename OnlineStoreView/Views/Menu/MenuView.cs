@@ -6,8 +6,6 @@ namespace OnlineStoreView.Views
 {
     public abstract class MenuView : View
     {
-        public MenuItemHandler Back { get; protected set; }
-
         public List<MenuItem> MenuItems { get; protected set; }
 
         protected MenuView(string header) : base(header) { }
@@ -21,13 +19,13 @@ namespace OnlineStoreView.Views
             }
             while (!IsValidUserInput());
 
-            if (Input == 1)
+            if (Input == 0)
             {
                 Handler = Back.Handler;
             }
-            else if (Input > 1 && Input <= MenuItems.Count + 1)
+            else if (Input > 0 && Input <= MenuItems.Count)
             {
-                MenuItemHandler item = MenuItems[Input - 2] as MenuItemHandler;
+                MenuItemHandler item = MenuItems[Input - 1] as MenuItemHandler;
                 Handler = item.Handler;
             }
         }
@@ -36,7 +34,7 @@ namespace OnlineStoreView.Views
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
-            var i = 1;
+            var i = 0;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
 
             foreach (MenuItem item in MenuItems)
@@ -55,7 +53,7 @@ namespace OnlineStoreView.Views
 
         public override bool IsValidUserInput()
         {
-            if (Input < 1 || Input > MenuItems.Count + 1)
+            if (Input < 0 || Input > MenuItems.Count)
             {
                 if (ErrorMessage == string.Empty)
                 {

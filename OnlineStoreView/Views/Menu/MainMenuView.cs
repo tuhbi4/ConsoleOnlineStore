@@ -1,12 +1,11 @@
-﻿using OnlineStoreView.Models;
+﻿using ConsoleOnlineStore;
+using OnlineStoreView.Models;
 
 namespace OnlineStoreView.Views
 {
     public sealed class MainMenuView : MenuView
     {
-        private const string header = "Glad to see you here!";
-
-        public MainMenuView() : base(header)
+        public MainMenuView() : base($"Glad to see you here, {StoreService.CurrentUser}!")
         {
             Back = new MenuItemHandler("Back", typeof(StartMenuView));
             MenuItems = new()
@@ -16,11 +15,6 @@ namespace OnlineStoreView.Views
                 new MenuItemHandler("View purchase history", typeof(OrderHistoryView)),
                 new MenuItemHandler("Log out", typeof(LogoutConfirmationView)),
             };
-        }
-
-        public void UpdateHeader(string userName)
-        {
-            Header = $"Glad to see you here, {userName}!";
         }
     }
 }

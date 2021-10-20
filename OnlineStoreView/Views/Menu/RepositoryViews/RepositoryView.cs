@@ -10,14 +10,8 @@ namespace OnlineStoreView.Views
 
         protected RepositoryView(string header) : base(header) { }
 
-        protected abstract void OnInit(); // TODO: call to core
-
-        protected abstract void OnFinish(); // TODO: call to core
-
         public override void Render()
         {
-            OnInit();
-
             do
             {
                 PrintMenu();
@@ -25,13 +19,13 @@ namespace OnlineStoreView.Views
             }
             while (!IsValidUserInput());
 
-            if (Input == 1)
+            if (Input == 0)
             {
                 Handler = Back.Handler;
             }
-            else if (Input > 1 && Input < MenuItems.Count + 1)
+            else if (Input > 0 && Input < MenuItems.Count)
             {
-                Handler = MenuItems[Input - 2].Handler;
+                Handler = MenuItems[Input - 1].Handler;
             }
         }
 
@@ -40,7 +34,7 @@ namespace OnlineStoreView.Views
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
             var i = 0;
-            LineRenderer.Secondary($"\n{++i}. {Back.Caption}\n");
+            LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
 
             foreach (MenuItemHandler item in MenuItems)
             {

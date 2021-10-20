@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Interfaces.Services;
 using ConsoleOnlineStore.Models;
@@ -8,61 +9,84 @@ using ConsoleOnlineStore.Services;
 
 namespace ConsoleOnlineStore
 {
-    public class StoreService
+    public static class StoreService
     {
-        private readonly IDeserializer<Config> configDeserializer = new JsonDeserializer<Config>();
-        private readonly IDeserializer<Product> productDeserializer = new JsonDeserializer<Product>();
-        private readonly ISerializer<Product> productSerializer = new JsonSerializer<Product>();
-        private readonly IDeserializer<Account> accountDeserializer = new JsonDeserializer<Account>();
-        private readonly ISerializer<Account> accountSerializer = new JsonSerializer<Account>();
-        private readonly IDeserializer<Order> orderDeserializer = new JsonDeserializer<Order>();
-        private readonly ISerializer<Order> orderSerializer = new JsonSerializer<Order>();
-        private readonly IRepository<Product> productRepository;
-        private readonly IRepository<Order> orderRepository;
-        private readonly IHashService hashService = new MD5HashService();
-        private readonly IAccountService accountService;
-        private readonly IBasketService basketService = new BasketService();
-        private string currentUser;
+        public static string CurrentUser { get; private set; }
 
-        public StoreService()
+        public static Product CurrentProduct { get; private set; }
+
+        public static Order CurrentOrder { get; private set; }
+
+        private static readonly IDeserializer<Config> configDeserializer = new JsonDeserializer<Config>();
+        private static readonly IDeserializer<Product> productDeserializer = new JsonDeserializer<Product>();
+        private static readonly ISerializer<Product> productSerializer = new JsonSerializer<Product>();
+        private static readonly IDeserializer<Account> accountDeserializer = new JsonDeserializer<Account>();
+        private static readonly ISerializer<Account> accountSerializer = new JsonSerializer<Account>();
+        private static readonly IDeserializer<Order> orderDeserializer = new JsonDeserializer<Order>();
+        private static readonly ISerializer<Order> orderSerializer = new JsonSerializer<Order>();
+        private static readonly IHashService hashService = new MD5HashService();
+        private static IAccountService accountService;
+        private static IBasketService basketService = new BasketService();
+        private static IRepository<Product> productRepository;
+        private static IRepository<Order> orderRepository;
+
+        static StoreService()
         {
             ConfigurationSettings.LoadSettings(configDeserializer);
+            Init();
+        }
+
+        private static void Init()
+        {
             productRepository = new Repository<Product>(productSerializer, productDeserializer, ConfigurationSettings.ProductsJsonPath);
             IRepository<Account> accountRepository = new Repository<Account>(accountSerializer, accountDeserializer, ConfigurationSettings.AccountsJsonPath);
             orderRepository = new Repository<Order>(orderSerializer, orderDeserializer, ConfigurationSettings.OrderJsonPath);
             accountService = new AccountService(hashService, accountRepository);
         }
 
-        public int TryLogin(string login, string password)
+        public static int TryLogin(string login, string password)
         {
             int accountState = accountService.TryLogIn(login, password);
+
             if (accountState == 1)
             {
-                currentUser = login;
+                CurrentUser = login;
+                basketService.InitBasket();
             }
+
             return accountState;
         }
 
-        public int TryRegister(string login, string password)
+        public static int TryRegister(string login, string password)
         {
             return accountService.TryRegister(login, password);
         }
 
-        public void Logout()
+        public static void Logout()
         {
-            currentUser = string.Empty;
+            CurrentUser = string.Empty;
             ClearBasket();
         }
 
-        public List<Product> GetCatalog()
+        public static List<Product> GetCatalog()
         {
             return productRepository.Read();
         }
 
-        public int TryAddProductToBasket(Product product, int quantity)
+        public static void SetCurrentProduct(Product product)
+        {
+            CurrentProduct = product;
+        }
+
+        public static void SetCurrentOrder(Order order)
+        {
+            CurrentOrder = order;
+        }
+
+        public static int TryAddProductToBasket(int quantity)
         {
             List<Product> productList = productRepository.Read();
-            Product intendedProduct = productList.Find(x => x.Name.Contains(product.Name));
+            Product intendedProduct = productList.Find(x => x.Name.Contains(CurrentProduct.Name));
 
             if (intendedProduct == null)
             {
@@ -74,11 +98,16 @@ namespace ConsoleOnlineStore
             }
             else
             {
-                return basketService.TryAddProduct(product, quantity);
+                return basketService.TryAddProduct(CurrentProduct, quantity);
             }
         }
 
-        public bool CompleteOrder(out List<Product> missingProducts)
+        public static List<Product> GetBasket()
+        {
+            return basketService.GetBasket();
+        }
+
+        public static bool CompleteOrder(out List<Product> missingProducts)
         {
             List<Product> catalog = productRepository.Read();
             List<Product> basket = basketService.GetBasket();
@@ -105,19 +134,25 @@ namespace ConsoleOnlineStore
             return false;
         }
 
-        public List<Order> GetOrderHistory()
+        public static void ClearBasket()
+        {
+            basketService.ClearBasket();
+        }
+
+        public static List<Order> GetOrderHistory()
         {
             return orderRepository.Read();
         }
 
-        private void CreateOrder(List<Product> productList)
+        private static void CreateOrder(List<Product> productList)
         {
-            orderRepository.Create(new Order(currentUser, productList));
-        }
-
-        public void ClearBasket()
-        {
-            basketService.ClearBasket();
+            List<Order> ordertList = orderRepository.Read();
+            if (ordertList == null)
+            {
+                ordertList = new();
+            }
+            ordertList.Add(new Order(CurrentUser, productList, DateTime.UtcNow));
+            orderRepository.Create(ordertList);
         }
     }
 }

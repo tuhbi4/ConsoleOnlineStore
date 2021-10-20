@@ -9,6 +9,8 @@ namespace ConsoleOnlineStore.Interfaces.Services
 
         public List<Product> GetBasket();
 
+        public void InitBasket();
+
         public void ClearBasket();
     }
 }

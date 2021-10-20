@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleOnlineStore;
 using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
@@ -13,37 +14,28 @@ namespace OnlineStoreView.Views
 
         public CatalogView() : base(header)
         {
-            MenuItems = new() { };
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
+            MenuItems = new() { };
+            OnInit();
         }
 
-        public CatalogView(List<Product> productList) : base(header)
+        public void OnInit()
         {
-            MenuItems = new();
+            List<Product> productList = StoreService.GetCatalog();
 
             foreach (Product product in productList)
             {
                 MenuItems.Add(new ProductMenuItemHandler(product));
             }
-
-            Back = new MenuItemHandler("Back", typeof(MainMenuView));
         }
 
-        protected override void OnInit()
+        public void OnFinish(Product product)
         {
-            // TODO: Call to product catalog repository
-            // MenuItems = new() { //...// };
-        }
-
-        protected override void OnFinish()
-        {
-            // TODO: Buy or clear
+            StoreService.SetCurrentProduct(product);
         }
 
         public override void Render()
         {
-            OnInit();
-
             do
             {
                 PrintMenu();
@@ -51,23 +43,22 @@ namespace OnlineStoreView.Views
             }
             while (!IsValidUserInput());
 
-            if (Input == 1)
+            if (Input == 0)
             {
                 Handler = Back.Handler;
             }
-            else if (Input > 1 && Input <= MenuItems.Count + 1)
+            else if (Input > 0 && Input <= MenuItems.Count)
             {
-                Handler = MenuItems[Input - 2].Handler;
+                Handler = MenuItems[Input - 1].Handler;
+                OnFinish(MenuItems[Input - 1].Product);
             }
-
-            OnFinish();
         }
 
         public override void PrintMenu()
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
-            int i = 1;
+            int i = 0;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
 
             if (MenuItems.Count != 0)
@@ -96,7 +87,7 @@ namespace OnlineStoreView.Views
 
         public override bool IsValidUserInput()
         {
-            if (Input < 1 || Input > MenuItems.Count + 1)
+            if (Input < 0 || Input > MenuItems.Count)
             {
                 if (ErrorMessage == string.Empty)
                 {

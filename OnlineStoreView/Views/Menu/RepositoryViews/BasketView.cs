@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using ConsoleOnlineStore;
+using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
@@ -19,32 +21,22 @@ namespace OnlineStoreView.Views
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
             MenuItems = new() { };
             Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationView));
-            Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
+            Clear = new MenuItemHandler("Clear", typeof(ClearBasketConfirmationView));
+            OnInit();
         }
 
-        public BasketView(BasketMenuItemHandler basket) : base(header)
+        public void OnInit()
         {
-            Back = new MenuItemHandler("Back", typeof(MainMenuView));
-            MenuItems = basket.ProductList;
-            Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationView));
-            Clear = new MenuItemHandler("Clear", typeof(MainMenuView));
-        }
+            List<Product> basket = StoreService.GetBasket();
 
-        protected override void OnInit()
-        {
-            // TODO: Call to basket repository
-            // MenuItems = new() { //...// };
-        }
-
-        protected override void OnFinish()
-        {
-            // TODO: Buy or clear
+            foreach (Product product in basket)
+            {
+                MenuItems.Add(new ProductMenuItemHandler(product));
+            }
         }
 
         public override void Render()
         {
-            OnInit();
-
             do
             {
                 PrintMenu();
@@ -52,31 +44,29 @@ namespace OnlineStoreView.Views
             }
             while (!IsValidUserInput());
 
-            if (Input == 1)
+            if (Input == 0)
             {
                 Handler = Back.Handler;
             }
-            else if (Input > 1 && Input <= MenuItems.Count + 1)
+            else if (Input > 0 && Input <= MenuItems.Count)
             {
-                Handler = MenuItems[Input - 2].Handler;
+                Handler = MenuItems[Input - 1].Handler;
             }
-            else if (Input == MenuItems.Count + 2)
+            else if (Input == MenuItems.Count + 1)
             {
                 Handler = Buy.Handler;
             }
-            else if (Input == MenuItems.Count + 3)
+            else if (Input == MenuItems.Count + 2)
             {
                 Handler = Clear.Handler;
             }
-
-            OnFinish();
         }
 
         public override void PrintMenu()
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
-            int i = 1;
+            int i = 0;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
 
             if (MenuItems.Count != 0)
@@ -108,7 +98,7 @@ namespace OnlineStoreView.Views
 
         public override bool IsValidUserInput()
         {
-            if (Input < 1 || Input > MenuItems.Count + 3)
+            if (Input < 0 || Input > MenuItems.Count + 2)
             {
                 if (ErrorMessage == string.Empty)
                 {

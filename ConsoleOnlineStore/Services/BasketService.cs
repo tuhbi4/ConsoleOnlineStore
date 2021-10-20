@@ -6,7 +6,7 @@ namespace ConsoleOnlineStore.Services
 {
     public class BasketService : IBasketService
     {
-        public List<Product> Basket { get; }
+        public List<Product> Basket { get; private set; }
 
         public int TryAddProduct(Product product, int quantity)
         {
@@ -30,6 +30,11 @@ namespace ConsoleOnlineStore.Services
         public List<Product> GetBasket()
         {
             return Basket;
+        }
+
+        public void InitBasket()
+        {
+            Basket = new();
         }
 
         public void ClearBasket()

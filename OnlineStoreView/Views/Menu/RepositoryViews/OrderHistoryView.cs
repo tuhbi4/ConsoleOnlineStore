@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using ConsoleOnlineStore;
+using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
@@ -8,38 +10,30 @@ namespace OnlineStoreView.Views
     {
         private const string header = "Purchase history";
 
-        public new List<OrderMenuItemHandler> MenuItems { get; set; }
+        public new List<MenuItemHandler> MenuItems { get; set; }
 
         public OrderHistoryView() : base(header)
         {
+            Back = new MenuItemHandler("Back", typeof(MainMenuView));
             MenuItems = new() { };
-            Back = new MenuItemHandler("Back", typeof(MainMenuView));
+            OnInit();
         }
 
-        public OrderHistoryView(List<OrderMenuItemHandler> orderList) : base(header)
+        public void OnInit()
         {
-            MenuItems = new();
-            foreach (OrderMenuItemHandler order in orderList)
+            List<Order> ordertList = StoreService.GetOrderHistory();
+
+            if (ordertList != null)
             {
-                MenuItems.Add(new OrderMenuItemHandler(order.Caption, typeof(CompleteOrderConfirmationView), order.AccountId, order.ProductList, order.PurchaseDate));
+                foreach (Order order in ordertList)
+                {
+                    MenuItems.Add(new MenuItemHandler(order.PurchaseDate.ToLocalTime().ToString(), typeof(OrderDetailsMenuView)));
+                }
             }
-            Back = new MenuItemHandler("Back", typeof(MainMenuView));
-        }
-
-        protected override void OnInit()
-        {
-            // TODO: Call to product order repository
-            // MenuItems = new() { //...// };
-        }
-
-        protected override void OnFinish()
-        {
-            // TODO: Buy or clear
         }
 
         public override void Render()
         {
-            OnInit();
             do
             {
                 PrintMenu();
@@ -47,38 +41,30 @@ namespace OnlineStoreView.Views
             }
             while (!IsValidUserInput());
 
-            if (Input == 1)
+            if (Input == 0)
             {
                 Handler = Back.Handler;
             }
-            else if (Input > 1 && Input <= MenuItems.Count + 1)
+            else if (Input > 0 && Input < MenuItems.Count + 1)
             {
-                Handler = MenuItems[Input - 2].Handler;
+                Handler = MenuItems[Input - 1].Handler;
+                List<Order> ordertList = StoreService.GetOrderHistory();
+                StoreService.SetCurrentOrder(ordertList[Input - 1]);
             }
-
-            OnFinish();
         }
 
         public override void PrintMenu()
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
-            int i = 1;
+            int i = 0;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
 
             if (MenuItems.Count != 0)
             {
-                foreach (OrderMenuItemHandler order in MenuItems)
+                foreach (MenuItem item in MenuItems)
                 {
-                    LineRenderer.Warning($"{++i}. {order.PurchaseDate}");
-                    int j = 0;
-
-                    foreach (ProductMenuItemHandler product in order.ProductList)
-                    {
-                        LineRenderer.Primary($"   {++j}. Product: {product.Caption}");
-                        LineRenderer.Primary($"      Price : {product.Product.Price}");
-                        LineRenderer.Primary($"      Quantity : {product.Product.Quantity}\n");
-                    }
+                    LineRenderer.Warning($"{++i}. {item.Caption}");
                 }
             }
             else
@@ -97,11 +83,11 @@ namespace OnlineStoreView.Views
 
         public override bool IsValidUserInput()
         {
-            if (Input < 1 || Input > MenuItems.Count + 1)
+            if (Input < 0 || Input > MenuItems.Count)
             {
                 if (ErrorMessage == string.Empty)
                 {
-                    ErrorMessage = "Enter correct number.";
+                    ErrorMessage = "We understand that it is very difficult to make a choice, but you must try again! :).";
                 }
 
                 return false;

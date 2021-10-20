@@ -1,4 +1,5 @@
 ﻿using System;
+using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
 namespace OnlineStoreView.Views
@@ -8,6 +9,8 @@ namespace OnlineStoreView.Views
         public string Header { get; protected set; }
 
         public Type Handler { get; protected set; }
+
+        public MenuItemHandler Back { get; protected set; }
 
         protected int Input { get; set; }
 
@@ -32,6 +35,7 @@ namespace OnlineStoreView.Views
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header}\n");
+            LineRenderer.Secondary($"\n{0}. {Back.Caption}\n");
 
             if (ErrorMessage != string.Empty)
             {
@@ -47,14 +51,17 @@ namespace OnlineStoreView.Views
             if (!int.TryParse(Console.ReadLine(), out int input))
             {
                 ErrorMessage = "This is not a number.";
+                Input = -1;
             }
-
-            Input = input;
+            else
+            {
+                Input = input;
+            }
         }
 
         public virtual bool IsValidUserInput()
         {
-            if (Input < 1)
+            if (Input != 0)
             {
                 if (ErrorMessage == string.Empty)
                 {

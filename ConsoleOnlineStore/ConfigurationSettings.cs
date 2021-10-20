@@ -1,4 +1,5 @@
-﻿using ConsoleOnlineStore.Interfaces;
+﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Models;
 
 namespace ConsoleOnlineStore
@@ -6,7 +7,7 @@ namespace ConsoleOnlineStore
     public static class ConfigurationSettings
 
     {
-        private const string ConfigJsonPath = "config.json";
+        private const string ConfigJsonPath = "..\\..\\..\\..\\ConsoleOnlineStore\\config\\config.json";
 
         public static string ProductsJsonPath { get; private set; }
 
@@ -18,7 +19,7 @@ namespace ConsoleOnlineStore
 
         public static void LoadSettings(IDeserializer<Config> configJsonDeserializer)
         {
-            var configList = configJsonDeserializer.GetData(ConfigJsonPath);
+            List<Config> configList = configJsonDeserializer.GetData(ConfigJsonPath);
             ProductsJsonPath = configList[0].ProductsJsonPath;
             AccountsJsonPath = configList[0].AccountsJsonPath;
             OrderJsonPath = configList[0].OrderJsonPath;
