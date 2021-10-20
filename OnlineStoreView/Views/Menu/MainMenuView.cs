@@ -5,7 +5,7 @@ namespace OnlineStoreView.Views
 {
     public sealed class MainMenuView : MenuView
     {
-        public MainMenuView() : base($"Glad to see you here, {StoreService.CurrentUser}!")
+        public MainMenuView() : base(string.Empty)
         {
             Back = new MenuItemHandler("Back", typeof(StartMenuView));
             MenuItems = new()
@@ -15,6 +15,12 @@ namespace OnlineStoreView.Views
                 new MenuItemHandler("View purchase history", typeof(OrderHistoryView)),
                 new MenuItemHandler("Log out", typeof(LogoutConfirmationView)),
             };
+        }
+
+        public override void Render(StoreService storeService)
+        {
+            Header = $"Glad to see you here, {storeService.CurrentUser}!";
+            base.Render(storeService);
         }
     }
 }

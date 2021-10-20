@@ -27,7 +27,7 @@ namespace OnlineStoreView.Views
 
         public void OnInit()
         {
-            List<Product> basket = StoreService.GetBasket();
+            List<Product> basket = storeService.GetBasket();
 
             foreach (Product product in basket)
             {
@@ -35,8 +35,10 @@ namespace OnlineStoreView.Views
             }
         }
 
-        public override void Render()
+        public override void Render(StoreService storeService)
         {
+            this.storeService = storeService;
+
             do
             {
                 PrintMenu();

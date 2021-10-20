@@ -17,9 +17,9 @@ namespace ConsoleOnlineStore
 
         public static int TimerTimeOut { get; private set; }
 
-        public static void LoadSettings(IDeserializer<Config> configJsonDeserializer)
+        public static void LoadSettings(IDeserializer configJsonDeserializer)
         {
-            List<Config> configList = configJsonDeserializer.GetData(ConfigJsonPath);
+            List<Config> configList = configJsonDeserializer.GetData<Config>(ConfigJsonPath);
             ProductsJsonPath = configList[0].ProductsJsonPath;
             AccountsJsonPath = configList[0].AccountsJsonPath;
             OrderJsonPath = configList[0].OrderJsonPath;

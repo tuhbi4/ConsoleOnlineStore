@@ -8,13 +8,16 @@ namespace OnlineStoreView.Views
 {
     public sealed class OrderDetailsMenuView : MenuView
     {
-        public OrderDetailsMenuView() : base($"Order details from {StoreService.CurrentOrder.PurchaseDate.ToLocalTime()}:")
+        public OrderDetailsMenuView() : base(string.Empty)
         {
             Back = new MenuItemHandler("Back", typeof(OrderHistoryView));
         }
 
-        public override void Render()
+        public override void Render(StoreService storeService)
         {
+            this.storeService = storeService;
+            Header = $"Order details from {storeService.CurrentOrder.PurchaseDate.ToLocalTime()}:";
+
             do
             {
                 PrintMenu();
@@ -32,7 +35,7 @@ namespace OnlineStoreView.Views
             var i = 0;
             LineRenderer.Secondary($"\n{i}. {Back.Caption}\n");
 
-            foreach (Product product in StoreService.CurrentOrder.ProductList)
+            foreach (Product product in storeService.CurrentOrder.ProductList)
             {
                 LineRenderer.Secondary($"      {i++}");
                 LineRenderer.Warning($"          Name : {product.Name}");

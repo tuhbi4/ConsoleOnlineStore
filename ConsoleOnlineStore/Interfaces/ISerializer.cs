@@ -2,8 +2,8 @@
 
 namespace ConsoleOnlineStore.Interfaces
 {
-    public interface ISerializer<T>
+    public interface ISerializer
     {
-        public void SaveData(string filePath, List<T> dataObject);
+        public void SaveData<T>(string filePath, List<T> dataObject);
     }
 }

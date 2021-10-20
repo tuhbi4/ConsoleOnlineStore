@@ -21,7 +21,7 @@ namespace OnlineStoreView.Views
 
         public void OnInit()
         {
-            List<Product> productList = StoreService.GetCatalog();
+            List<Product> productList = storeService.GetCatalog();
 
             foreach (Product product in productList)
             {
@@ -31,10 +31,10 @@ namespace OnlineStoreView.Views
 
         public void OnFinish(Product product)
         {
-            StoreService.SetCurrentProduct(product);
+            storeService.SetCurrentProduct(product);
         }
 
-        public override void Render()
+        public override void Render(StoreService storeService)
         {
             do
             {

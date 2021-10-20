@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace ConsoleOnlineStore.Services
 {
-    public class JsonDeserializer<T> : IDeserializer<T>
+    public class JsonDeserializer : IDeserializer
     {
-        public List<T> GetData(string filePath)
+        public List<T> GetData<T>(string filePath)
         {
             string jsonString = File.ReadAllText(filePath);
             List<T> itemList = JsonConvert.DeserializeObject<List<T>>(jsonString);

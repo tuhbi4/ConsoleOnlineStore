@@ -1,5 +1,4 @@
-﻿using ConsoleOnlineStore;
-using OnlineStoreView.Models;
+﻿using OnlineStoreView.Models;
 
 namespace OnlineStoreView.Views
 {
@@ -21,7 +20,7 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            int opCode = StoreService.TryLogin(Inputs[0], Inputs[1]);
+            int opCode = storeService.TryLogin(Inputs[0], Inputs[1]);
             if (opCode == 1)
             {
                 OnSuccess();

@@ -5,11 +5,11 @@ namespace ConsoleOnlineStore.Repository
 {
     public class Repository<T> : IRepository<T>
     {
-        private readonly ISerializer<T> jsonSerializer;
-        private readonly IDeserializer<T> jsonDeserializer;
+        private readonly ISerializer jsonSerializer;
+        private readonly IDeserializer jsonDeserializer;
         private readonly string filepath;
 
-        public Repository(ISerializer<T> jsonSerializer, IDeserializer<T> jsonDeserializer, string filepath)
+        public Repository(ISerializer jsonSerializer, IDeserializer jsonDeserializer, string filepath)
         {
             this.jsonSerializer = jsonSerializer;
             this.jsonDeserializer = jsonDeserializer;
@@ -23,7 +23,7 @@ namespace ConsoleOnlineStore.Repository
 
         public List<T> Read()
         {
-            return jsonDeserializer.GetData(filepath);
+            return jsonDeserializer.GetData<T>(filepath);
         }
     }
 }

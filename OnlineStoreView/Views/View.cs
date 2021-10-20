@@ -1,4 +1,5 @@
 ﻿using System;
+using ConsoleOnlineStore;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
@@ -16,13 +17,17 @@ namespace OnlineStoreView.Views
 
         protected string ErrorMessage { get; set; } = string.Empty;
 
+        protected StoreService storeService;
+
         protected View(string header)
         {
             Header = header;
         }
 
-        public virtual void Render()
+        public virtual void Render(StoreService storeService)
         {
+            this.storeService = storeService;
+
             do
             {
                 PrintMenu();

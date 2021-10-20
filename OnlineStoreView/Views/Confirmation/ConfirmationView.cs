@@ -1,4 +1,5 @@
 ﻿using System;
+using ConsoleOnlineStore;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
@@ -14,8 +15,10 @@ namespace OnlineStoreView.Views
 
         protected abstract void OnFinish(); // TODO: now uses just in logout menu
 
-        public override void Render()
+        public override void Render(StoreService storeService)
         {
+            this.storeService = storeService;
+
             do
             {
                 PrintMenu();

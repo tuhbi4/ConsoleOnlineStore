@@ -9,8 +9,4 @@
     <ProjectReference Include="..\ConsoleOnlineStore\OnlineStoreCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Info\" />
-  </ItemGroup>
-
 </Project>

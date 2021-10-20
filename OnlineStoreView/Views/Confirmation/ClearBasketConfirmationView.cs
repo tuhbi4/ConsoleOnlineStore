@@ -1,5 +1,4 @@
-﻿using ConsoleOnlineStore;
-using OnlineStoreView.Models;
+﻿using OnlineStoreView.Models;
 
 namespace OnlineStoreView.Views
 {
@@ -15,7 +14,7 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            StoreService.ClearBasket();
+            storeService.ClearBasket();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleOnlineStore;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
@@ -34,8 +35,9 @@ namespace OnlineStoreView.Views
             }
         }
 
-        public override void Render()
+        public override void Render(StoreService storeService)
         {
+            this.storeService = storeService;
             var index = 0;
             Inputs = new();
 

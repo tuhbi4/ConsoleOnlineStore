@@ -1,14 +1,17 @@
 ﻿using System;
+using ConsoleOnlineStore;
 using OnlineStoreView.Renderers;
 
 namespace OnlineStoreView.Views
 {
     public class StoreView
     {
+        private readonly StoreService storeService;
         private View nextMenu;
 
-        public StoreView()
+        public StoreView(StoreService storeService)
         {
+            this.storeService = storeService;
             nextMenu = new StartMenuView();
         }
 
@@ -16,7 +19,7 @@ namespace OnlineStoreView.Views
         {
             do
             {
-                nextMenu.Render();
+                nextMenu.Render(storeService);
 
                 if (nextMenu.Handler != null)
                 {

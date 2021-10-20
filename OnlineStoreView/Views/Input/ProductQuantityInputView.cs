@@ -1,5 +1,4 @@
 ﻿using System;
-using ConsoleOnlineStore;
 using OnlineStoreView.Models;
 
 namespace OnlineStoreView.Views
@@ -21,7 +20,7 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            int opCode = StoreService.TryAddProductToBasket(Input);
+            int opCode = storeService.TryAddProductToBasket(Input);
             if (opCode > 0)
             {
                 OnSuccess();

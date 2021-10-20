@@ -21,7 +21,7 @@ namespace OnlineStoreView.Views
 
         public void OnInit()
         {
-            List<Order> ordertList = StoreService.GetOrderHistory();
+            List<Order> ordertList = storeService.GetOrderHistory();
 
             if (ordertList != null)
             {
@@ -32,8 +32,10 @@ namespace OnlineStoreView.Views
             }
         }
 
-        public override void Render()
+        public override void Render(StoreService storeService)
         {
+            this.storeService = storeService;
+
             do
             {
                 PrintMenu();
@@ -48,8 +50,8 @@ namespace OnlineStoreView.Views
             else if (Input > 0 && Input < MenuItems.Count + 1)
             {
                 Handler = MenuItems[Input - 1].Handler;
-                List<Order> ordertList = StoreService.GetOrderHistory();
-                StoreService.SetCurrentOrder(ordertList[Input - 1]);
+                List<Order> ordertList = storeService.GetOrderHistory();
+                storeService.SetCurrentOrder(ordertList[Input - 1]);
             }
         }
 
