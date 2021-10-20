@@ -7,9 +7,13 @@ namespace ConsoleOnlineStore
 
     {
         private const string ConfigJsonPath = "config.json";
+
         public static string ProductsJsonPath { get; private set; }
+
         public static string AccountsJsonPath { get; private set; }
+
         public static string OrderJsonPath { get; private set; }
+
         public static int TimerTimeOut { get; private set; }
 
         public static void LoadSettings(IDeserializer<Config> configJsonDeserializer)

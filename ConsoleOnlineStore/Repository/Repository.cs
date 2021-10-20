@@ -21,7 +21,7 @@ namespace ConsoleOnlineStore.Repository
             jsonSerializer.SaveData(filepath, dataObject);
         }
 
-        public void Create(List<T> dataObject)
+        public void Create(List<T> dataObject) //TODO: remove useless method?
         {
             jsonSerializer.SaveData(filepath, dataObject);
         }
@@ -31,19 +31,19 @@ namespace ConsoleOnlineStore.Repository
             return jsonDeserializer.GetData(filepath);
         }
 
-        public T Read(int id)
+        public T Read(int id) //TODO: remove useless method?
         {
-            throw new System.NotImplementedException(); //TODO
+            throw new System.NotImplementedException();
         }
 
-        public void Update(int id)
+        public void Update(int id) //TODO: remove useless method?
         {
-            throw new System.NotImplementedException(); //TODO
+            throw new System.NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete(int id) //TODO: remove useless method?
         {
-            throw new System.NotImplementedException(); //TODO
+            throw new System.NotImplementedException();
         }
     }
 }

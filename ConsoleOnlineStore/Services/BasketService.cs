@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using ConsoleOnlineStore.Interfaces.Services;
-using ConsoleOnlineStore.Models;
 using ConsoleOnlineStore.Models.Repositories;
 
 namespace ConsoleOnlineStore.Services
@@ -27,6 +26,7 @@ namespace ConsoleOnlineStore.Services
                 return 1;
             }
         }
+
         public List<Product> GetBasket()
         {
             return Basket;

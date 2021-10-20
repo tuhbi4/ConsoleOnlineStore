@@ -11,6 +11,7 @@ namespace ConsoleOnlineStore.Services
         {
             string jsonString = File.ReadAllText(filePath);
             List<T> itemList = JsonConvert.DeserializeObject<List<T>>(jsonString);
+
             return itemList;
         }
     }
