@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OnlineStoreView.Renderers
+namespace OnlineStoreView.ZView
 {
     public static class LineRenderer
     {

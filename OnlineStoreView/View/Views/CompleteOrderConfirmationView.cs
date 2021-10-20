@@ -2,7 +2,7 @@
 using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
     public sealed class CompleteOrderConfirmationView : ConfirmationView
     {

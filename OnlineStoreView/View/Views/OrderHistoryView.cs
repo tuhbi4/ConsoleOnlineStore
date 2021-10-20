@@ -4,7 +4,7 @@ using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
     public sealed class OrderHistoryView : RepositoryView
     {
@@ -64,7 +64,7 @@ namespace OnlineStoreView.Views
 
             if (MenuItems.Count != 0)
             {
-                foreach (MenuItem item in MenuItems)
+                foreach (Header item in MenuItems)
                 {
                     LineRenderer.Warning($"{++i}. {item.Caption}");
                 }

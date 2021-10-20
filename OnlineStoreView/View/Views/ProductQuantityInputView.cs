@@ -1,7 +1,7 @@
 ﻿using System;
 using OnlineStoreView.Models;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
     public class ProductQuantityInputView : InputView
     {
@@ -12,7 +12,7 @@ namespace OnlineStoreView.Views
             Cancel = new MenuItemHandler("Cancel", typeof(CatalogView));
             MenuItems = new()
             {
-                new MenuItem("Enter quantity"),
+                new Header("Enter quantity"),
             };
             SuccessHandler = typeof(CatalogView);
             ErrorHandler = typeof(ProductQuantityInputView);

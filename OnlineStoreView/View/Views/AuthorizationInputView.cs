@@ -1,18 +1,18 @@
 ﻿using OnlineStoreView.Models;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
-    public class RegistrationInputView : InputView
+    public sealed class AuthorizationInputView : InputView
     {
-        private const string header = "Enter the details to create a new account";
+        private const string header = "Enter your account details for log in";
 
-        public RegistrationInputView() : base(header)
+        public AuthorizationInputView() : base(header)
         {
             Cancel = new MenuItemHandler("Cancel", typeof(StartMenuView));
             MenuItems = new()
             {
-                new MenuItem("Come up with a login"),
-                new MenuItem("Come up with a password"),
+                new Header("Enter login"),
+                new Header("Enter password"),
             };
             SuccessHandler = typeof(MainMenuView);
             ErrorHandler = typeof(StartMenuView);
@@ -20,13 +20,14 @@ namespace OnlineStoreView.Views
 
         protected override void OnFinish()
         {
-            int opCode = storeService.TryRegister(Inputs[0], Inputs[1]);
+            int opCode = storeService.TryLogin(Inputs[0], Inputs[1]);
             if (opCode == 1)
             {
                 OnSuccess();
             }
             else
             {
+                ErrorMessage = "Error";
                 OnError(opCode);
             }
         }

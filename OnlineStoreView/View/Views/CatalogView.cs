@@ -4,41 +4,38 @@ using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
-    public sealed class BasketView : RepositoryView
+    public sealed class CatalogView : RepositoryView
     {
-        private const string header = "Basket";
+        private const string header = "Catalog";
 
         public new List<ProductMenuItemHandler> MenuItems { get; set; }
 
-        public MenuItemHandler Buy { get; }
-
-        public MenuItemHandler Clear { get; }
-
-        public BasketView() : base(header)
+        public CatalogView() : base(header)
         {
             Back = new MenuItemHandler("Back", typeof(MainMenuView));
             MenuItems = new() { };
-            Buy = new MenuItemHandler("Buy", typeof(CompleteOrderConfirmationView));
-            Clear = new MenuItemHandler("Clear", typeof(ClearBasketConfirmationView));
             OnInit();
         }
 
         public void OnInit()
         {
-            List<Product> basket = storeService.GetBasket();
+            List<Product> productList = storeService.GetCatalog();
 
-            foreach (Product product in basket)
+            foreach (Product product in productList)
             {
                 MenuItems.Add(new ProductMenuItemHandler(product));
             }
         }
 
+        public void OnFinish(Product product)
+        {
+            storeService.SetCurrentProduct(product);
+        }
+
         public override void Render(StoreService storeService)
         {
-            this.storeService = storeService;
-
             do
             {
                 PrintMenu();
@@ -53,14 +50,7 @@ namespace OnlineStoreView.Views
             else if (Input > 0 && Input <= MenuItems.Count)
             {
                 Handler = MenuItems[Input - 1].Handler;
-            }
-            else if (Input == MenuItems.Count + 1)
-            {
-                Handler = Buy.Handler;
-            }
-            else if (Input == MenuItems.Count + 2)
-            {
-                Handler = Clear.Handler;
+                OnFinish(MenuItems[Input - 1].Product);
             }
         }
 
@@ -75,18 +65,15 @@ namespace OnlineStoreView.Views
             {
                 foreach (ProductMenuItemHandler item in MenuItems)
                 {
-                    LineRenderer.Information($"{++i}. {item.Caption}");
+                    LineRenderer.Information($"\n{++i}. {item.Caption}");
                     LineRenderer.Secondary($"   << {item.Product.Description} >>");
                     LineRenderer.Primary($"   Price : {item.Product.Price}");
-                    LineRenderer.Warning($"   Quantity : {item.Product.Quantity}\n");
+                    LineRenderer.Warning($"   In stock : {item.Product.Quantity}\n");
                 }
-
-                LineRenderer.Success($"\n{++i}. {Buy.Caption}");
-                LineRenderer.Error($"{++i}. {Clear.Caption}\n");
             }
             else
             {
-                LineRenderer.Warning("\nYour basket is empty!\n");
+                LineRenderer.Warning("\nSorry, but we are not selling anything right now =(\n");
             }
 
             LineRenderer.Secondary("\nEnter the number of your choice:\n");
@@ -100,11 +87,11 @@ namespace OnlineStoreView.Views
 
         public override bool IsValidUserInput()
         {
-            if (Input < 0 || Input > MenuItems.Count + 2)
+            if (Input < 0 || Input > MenuItems.Count)
             {
                 if (ErrorMessage == string.Empty)
                 {
-                    ErrorMessage = "Enter correct number.";
+                    ErrorMessage = "We understand that it is very difficult to make a choice, but you must try again! :).";
                 }
 
                 return false;

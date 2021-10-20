@@ -1,6 +1,6 @@
 ﻿using OnlineStoreView.Models;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
     public sealed class StartMenuView : MenuView
     {

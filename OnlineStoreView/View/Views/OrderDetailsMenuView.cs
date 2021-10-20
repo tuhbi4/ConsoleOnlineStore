@@ -4,7 +4,7 @@ using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Models;
 using OnlineStoreView.Renderers;
 
-namespace OnlineStoreView.Views
+namespace OnlineStoreView.ZView
 {
     public sealed class OrderDetailsMenuView : MenuView
     {

@@ -1,8 +1,9 @@
-﻿namespace OnlineStoreView.Models
+﻿namespace OnlineStoreView.ZView
 {
     public class MenuItem
     {
-        public string Caption { get; protected set; }
+        public string Caption { get; }
+
 
         public MenuItem(string caption)
         {
