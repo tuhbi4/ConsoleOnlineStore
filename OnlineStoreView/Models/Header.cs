@@ -1,4 +1,4 @@
-﻿namespace OnlineStoreView.ZView
+﻿namespace OnlineStoreView.Models
 {
     public class Header
     {
