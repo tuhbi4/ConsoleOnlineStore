@@ -4,7 +4,8 @@ using ConsoleOnlineStore.Interfaces.Services;
 using ConsoleOnlineStore.Models.Repositories;
 using ConsoleOnlineStore.Repository;
 using ConsoleOnlineStore.Services;
-using OnlineStoreView.Views;
+using OnlineStoreView.Interfaces;
+using OnlineStoreView.View;
 
 namespace OnlineStoreView
 {
@@ -20,9 +21,12 @@ namespace OnlineStoreView
             IRepository<Order> orderRepository = new Repository<Order>(JsonSerializer, JsonDeserializer, ConfigurationSettings.OrderJsonPath);
             IHashService hashService = new MD5HashService();
             IAccountService accountService = new AccountService(hashService, accountRepository);
-            IBasketService basketService = new BasketService();
-            StoreService storeService = new(accountService, basketService, accountRepository, productRepository, orderRepository);
-            StoreView storeView = new(storeService);
+            IBasketService basketService = new BasketService(productRepository);
+            IOrderService orderService = new OrderService(orderRepository, productRepository);
+            IProductService productService = new ProductService(productRepository);
+            IViewBuffer buffer = new ViewBuffer();
+            IViewFactory viewFactory = new ViewFactory(accountService, basketService, orderService, productService, buffer);
+            StoreView storeView = new(viewFactory);
             storeView.Init();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Threading;
 
-namespace OnlineStoreView.ZView
+namespace OnlineStoreView.Renderers
 {
     public static class LineRenderer
     {
@@ -54,6 +55,22 @@ namespace OnlineStoreView.ZView
         private static void PrintAndResetColor(string text)
         {
             Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        internal static void Loading(string startText, string indicator, string endText, ConsoleColor color, int timeInSeconds)
+        {
+            Console.Write($"\n{startText.ToUpperInvariant()}: ");
+
+            for (int i = 0; i <= timeInSeconds; i++)
+            {
+                Thread.Sleep(timeInSeconds * 100);
+                Console.Write($"{indicator} ");
+            }
+
+            Console.ForegroundColor = color;
+            Console.Write(endText);
+            Thread.Sleep(timeInSeconds * 500);
             Console.ResetColor();
         }
     }
