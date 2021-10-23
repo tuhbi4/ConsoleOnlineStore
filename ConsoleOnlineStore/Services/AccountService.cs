@@ -17,7 +17,7 @@ namespace ConsoleOnlineStore.Services
             this.accountRepository = accountRepository;
         }
 
-        public int TryLogIn(string login, string password)
+        public int TryLogin(string login, string password)
         {
             accountList = accountRepository.Read();
             if (IsAccountFound(login, password))
@@ -52,7 +52,7 @@ namespace ConsoleOnlineStore.Services
 
         private bool IsAccountFound(string login, string password)
         {
-            if (accountList != null)
+            if (accountList != null && login != null && password != null)
             {
                 Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
 

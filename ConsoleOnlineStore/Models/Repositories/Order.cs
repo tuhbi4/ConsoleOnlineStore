@@ -5,15 +5,15 @@ namespace ConsoleOnlineStore.Models.Repositories
 {
     public class Order
     {
-        public string AccountId { get; }
+        public string AccountLogin { get; }
 
         public List<Product> ProductList { get; set; }
 
         public DateTime PurchaseDate { get; }
 
-        public Order(string accountID, List<Product> productList, DateTime purchaseDate)
+        public Order(string accountLogin, List<Product> productList, DateTime purchaseDate)
         {
-            AccountId = accountID;
+            AccountLogin = accountLogin;
             ProductList = productList;
             PurchaseDate = purchaseDate;
         }
