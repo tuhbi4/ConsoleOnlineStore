@@ -31,6 +31,7 @@ namespace OnlineStoreView.View.Views.MenuViews
         protected override void BeforePrintMenu()
         {
             MenuItems = new();
+
             foreach (BasketItem item in buffer.CurrentBasket.BasketItemList)
             {
                 MenuItems.Add(new ProductItemHandler(item.Product, typeof(ProductQuantityInputView)));

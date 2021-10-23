@@ -36,6 +36,7 @@ namespace OnlineStoreView.View.Views.InputViews
             if (Input != 0)
             {
                 int opCode = accountService.TryLogin(MenuItems[0].Input, MenuItems[1].Input);
+
                 if (opCode == 1)
                 {
                     OnSuccess();

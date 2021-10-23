@@ -28,6 +28,7 @@ namespace OnlineStoreView.View.Views.ConfirmationViews
         protected override void OnSelectYes()
         {
             List<BasketItem> missingProducts = new();
+
             if (orderService.CompleteOrder(buffer.CurrentBasket, out missingProducts))
             {
                 LineRenderer.Loading("We are checking your order...", "", "Your order has been successfully sent for processing!", ConsoleColor.Green, 3);
@@ -36,10 +37,12 @@ namespace OnlineStoreView.View.Views.ConfirmationViews
             {
                 LineRenderer.Loading("We are checking your order...", "", "We are sorry, some products are not enough for your order.", ConsoleColor.Red, 3);
                 LineRenderer.Loading("Try to reduce the quantity of the following products(you can check the actual stocks in the catalog)", "", "", ConsoleColor.Red, 3);
+
                 foreach (BasketItem item in missingProducts)
                 {
                     LineRenderer.Warning($" > {item.Product.Name}");
                 }
+
                 LineRenderer.Loading("", "", "", ConsoleColor.Red, 3);
                 // TODO: throw a message about the change in the basket (use missingProducts list)
             }

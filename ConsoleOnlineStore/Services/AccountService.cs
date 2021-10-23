@@ -20,6 +20,7 @@ namespace ConsoleOnlineStore.Services
         public int TryLogin(string login, string password)
         {
             accountList = accountRepository.Read();
+
             if (IsAccountFound(login, password))
             {
                 return 1;
@@ -35,6 +36,7 @@ namespace ConsoleOnlineStore.Services
         public int TryRegister(string login, string password)
         {
             accountList = accountRepository.Read();
+
             if (!IsAccountFound(login, password))
             {
                 accountList.Add(new Account(login, md5Hash.GetHash(password)));

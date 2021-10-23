@@ -17,10 +17,12 @@ namespace ConsoleOnlineStore.Models.Repositories
         public List<Product> GetProducts()
         {
             List<Product> productList = new();
+
             foreach (BasketItem item in BasketItemList)
             {
                 productList.Add(item.Product);
             }
+
             return productList;
         }
 

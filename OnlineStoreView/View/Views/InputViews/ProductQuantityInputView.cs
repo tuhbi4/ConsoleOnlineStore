@@ -31,6 +31,7 @@ namespace OnlineStoreView.View.Views.InputViews
             int addedProductQuantity = 0;
             int maxAllowableQuantity;
             BasketItem intendedBasketItem = buffer.CurrentBasket.BasketItemList.Find(x => x.Product.Name.Contains(buffer.CurrentProduct.Name));
+
             if (intendedBasketItem != null)
             {
                 addedProductQuantity = intendedBasketItem.AddedQuantity;

@@ -34,6 +34,7 @@ namespace OnlineStoreView.View.Views.InputViews
         protected override void OnFinish()
         {
             int opCode = accountService.TryRegister(MenuItems[0].Input, MenuItems[1].Input);
+
             if (opCode == 1)
             {
                 OnSuccess();

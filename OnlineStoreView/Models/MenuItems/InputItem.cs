@@ -11,22 +11,4 @@
             Input = input;
         }
     }
-
-    public class Request
-    {
-        public string Statement { get; }
-
-        public string Expression { get; private set; }
-
-        public Request(string statement)
-        {
-            Statement = statement;
-            Expression = string.Empty;
-        }
-
-        public void SetExpression(string expression)
-        {
-            Expression = expression;
-        }
-    }
 }

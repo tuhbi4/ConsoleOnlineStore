@@ -46,7 +46,6 @@ namespace OnlineStoreView.View.Views
             while (!IsValidUserInput());
 
             OnFinish();
-
             NextViewType = GetNextViewType();
         }
 
