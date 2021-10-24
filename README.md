@@ -3,12 +3,14 @@
 Console project "Console online store"
 
 ***
+
 ## Project status
-![](https://img.shields.io/badge/project%20completed-80%25-green)
+![](https://img.shields.io/badge/project%20completed-100%25-lightgreen)
 ![](https://img.shields.io/badge/build-success-success)
-![](https://img.shields.io/badge/manual%20testing-pass-yellow)
+![](https://img.shields.io/badge/manual%20testing-pass-success)
 ![](https://img.shields.io/badge/coverage%20-0%25-critical)
 ![](https://img.shields.io/badge/documentation-0%25-critical)
+
 ***
 
 ## Project prototype
@@ -24,16 +26,28 @@ Console project "Console online store"
   - [X] Working with database
   - [X] Account
   - [X] Basket
-- [X] View project ready
-- [ ] Controller ready:
+  - [X] Order histoty
+- [X] View project ready:
+  - [X] General menus
+  - [X] Aythorization/Registration
+  - [X] Catalog
+  - [X] Basket
+  - [X] Order histoty
+- [X] Controller ready:
+  - [X] Core controller
   - [X] View controller
-  - [ ] Core controller
-  - [ ] General controller
+  - [X] Application controller
+- [X] Required functionality:
+  - [X] Emptying the basket by timer
+  - [X] Notification
+##
 - [ ] Extra functionality:
   - [ ] Search product by name
   - [ ] Pagination
 - [ ] Test coverage
 - [ ] Documentation
+
+##
 
 [:arrow_up_small:](#tic-tac-toe)
 
@@ -43,5 +57,8 @@ Console project "Console online store"
 
 ![Scheme](task.png)
 
+##
+
 [:arrow_up_small:](#tic-tac-toe)
+
 ***
