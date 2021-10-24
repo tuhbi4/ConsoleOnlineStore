@@ -4,6 +4,8 @@ using ConsoleOnlineStore.Interfaces.Services;
 using ConsoleOnlineStore.Models.Repositories;
 using ConsoleOnlineStore.Repository;
 using ConsoleOnlineStore.Services;
+using OnlineStoreView.Factories;
+using OnlineStoreView.Factories.BasketFactories;
 using OnlineStoreView.Interfaces;
 using OnlineStoreView.View;
 
@@ -24,9 +26,11 @@ namespace OnlineStoreView
             IBasketService basketService = new BasketService(productRepository);
             IOrderService orderService = new OrderService(orderRepository, productRepository);
             IProductService productService = new ProductService(productRepository);
-            IViewBuffer buffer = new ViewBuffer();
+            ViewNotifier viewNotifier = new();
+            IBasketFactory basketFactory = new NotifiableBasketFactory(viewNotifier, ConfigurationSettings.TimerTimeOut);
+            IViewBuffer buffer = new ViewBuffer(basketFactory);
             IViewFactory viewFactory = new ViewFactory(accountService, basketService, orderService, productService, buffer);
-            StoreView storeView = new(viewFactory);
+            StoreView storeView = new(viewFactory, viewNotifier);
             storeView.Init();
         }
     }

@@ -1,5 +1,5 @@
 ﻿using OnlineStoreView.Interfaces;
-using OnlineStoreView.Models.MenuItemHandlers;
+using OnlineStoreView.Models.MenuItems.MenuItemHandlers;
 using OnlineStoreView.View.Views.MenuViews;
 
 namespace OnlineStoreView.View.Views.ConfirmationViews

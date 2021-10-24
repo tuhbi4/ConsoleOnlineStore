@@ -1,7 +1,7 @@
 ﻿using System;
 using ConsoleOnlineStore.Models;
 using OnlineStoreView.Interfaces;
-using OnlineStoreView.Models.MenuItemHandlers;
+using OnlineStoreView.Models.MenuItems.MenuItemHandlers;
 using OnlineStoreView.Renderers;
 using OnlineStoreView.View.Views.ConfirmationViews;
 using OnlineStoreView.View.Views.InputViews;

@@ -4,7 +4,7 @@ using ConsoleOnlineStore.Interfaces.Services;
 using ConsoleOnlineStore.Models;
 using ConsoleOnlineStore.Models.Repositories;
 using OnlineStoreView.Interfaces;
-using OnlineStoreView.Models.MenuItemHandlers;
+using OnlineStoreView.Models.MenuItems.MenuItemHandlers;
 using OnlineStoreView.Renderers;
 using OnlineStoreView.View.Views.InputViews;
 

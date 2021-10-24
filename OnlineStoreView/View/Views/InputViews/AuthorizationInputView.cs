@@ -1,8 +1,8 @@
 ﻿using System;
 using ConsoleOnlineStore.Interfaces.Services;
 using OnlineStoreView.Interfaces;
-using OnlineStoreView.Models.MenuItemHandlers;
 using OnlineStoreView.Models.MenuItems;
+using OnlineStoreView.Models.MenuItems.MenuItemHandlers;
 using OnlineStoreView.Renderers;
 using OnlineStoreView.View.Views.MenuViews;
 

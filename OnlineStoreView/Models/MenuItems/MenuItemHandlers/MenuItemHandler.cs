@@ -1,7 +1,6 @@
 ﻿using System;
-using OnlineStoreView.Models.MenuItems;
 
-namespace OnlineStoreView.Models.MenuItemHandlers
+namespace OnlineStoreView.Models.MenuItems.MenuItemHandlers
 {
     public class MenuItemHandler : MenuItem
     {
