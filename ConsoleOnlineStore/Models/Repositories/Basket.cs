@@ -26,7 +26,7 @@ namespace ConsoleOnlineStore.Models.Repositories
             return productList;
         }
 
-        public void AddProduct(Product product, int quantity)
+        public virtual void AddProduct(Product product, int quantity)
         {
             BasketItem existingProduct = BasketItemList.Find(x => x.Product.Id.Contains(product.Id));
 
@@ -41,7 +41,7 @@ namespace ConsoleOnlineStore.Models.Repositories
             }
         }
 
-        public void ClearBasket()
+        public virtual void ClearBasket()
         {
             BasketItemList.Clear();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ConsoleOnlineStore.Interfaces.Services;
 using ConsoleOnlineStore.Models;
 using OnlineStoreView.Interfaces;
-using OnlineStoreView.Models.MenuItemHandlers;
+using OnlineStoreView.Models.MenuItems.MenuItemHandlers;
 using OnlineStoreView.Renderers;
 using OnlineStoreView.View.Views.MenuViews;
 
@@ -27,9 +27,7 @@ namespace OnlineStoreView.View.Views.ConfirmationViews
 
         protected override void OnSelectYes()
         {
-            List<BasketItem> missingProducts = new();
-
-            if (orderService.CompleteOrder(buffer.CurrentBasket, out missingProducts))
+            if (orderService.CompleteOrder(buffer.CurrentBasket, out List<BasketItem> missingProducts))
             {
                 LineRenderer.Loading("We are checking your order...", "", "Your order has been successfully sent for processing!", ConsoleColor.Green, 3);
             }
@@ -44,7 +42,6 @@ namespace OnlineStoreView.View.Views.ConfirmationViews
                 }
 
                 LineRenderer.Loading("", "", "", ConsoleColor.Red, 3);
-                // TODO: throw a message about the change in the basket (use missingProducts list)
             }
         }
     }
