@@ -33,15 +33,18 @@ namespace OnlineStoreView.View.Views.InputViews
 
         protected override void OnFinish()
         {
-            int opCode = accountService.TryRegister(MenuItems[0].Input, MenuItems[1].Input);
+            if (Input != 0)
+            {
+                int opCode = accountService.TryRegister(MenuItems[0].Input, MenuItems[1].Input);
 
-            if (opCode == 1)
-            {
-                OnSuccess();
-            }
-            else
-            {
-                OnError(opCode);
+                if (opCode == 1)
+                {
+                    OnSuccess();
+                }
+                else
+                {
+                    OnError(opCode);
+                }
             }
         }
 
