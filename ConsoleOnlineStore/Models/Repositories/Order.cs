@@ -5,15 +5,17 @@ namespace ConsoleOnlineStore.Models.Repositories
 {
     public class Order
     {
-        public string AccountID { get; }
+        public string AccountLogin { get; }
+
         public List<Product> ProductList { get; set; }
+
         public DateTime PurchaseDate { get; }
 
-        public Order(string accountID, List<Product> productList)
+        public Order(string accountLogin, List<Product> productList, DateTime purchaseDate)
         {
-            AccountID = accountID;
+            AccountLogin = accountLogin;
             ProductList = productList;
-            PurchaseDate = DateTime.UtcNow;
+            PurchaseDate = purchaseDate;
         }
     }
 }

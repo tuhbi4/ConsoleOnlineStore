@@ -5,22 +5,12 @@ using Newtonsoft.Json;
 
 namespace ConsoleOnlineStore.Services
 {
-    public class JsonSerializer<T> : ISerializer<T>
+    public class JsonSerializer : ISerializer
     {
-        public void SaveData(string filePath, T dataObject)
-        {
-            SaveObject(filePath, dataObject);
-        }
-
-        public void SaveData(string filePath, List<T> dataObject)
-        {
-            SaveObject(filePath, dataObject);
-        }
-
-        private void SaveObject(string filePath, object dataObject)
+        public void SaveData<T>(string filePath, List<T> dataObject)
         {
             string jsonString = JsonConvert.SerializeObject(dataObject, Formatting.Indented);
-            File.AppendAllText(filePath, jsonString);
+            File.WriteAllText(filePath, jsonString);
         }
     }
 }

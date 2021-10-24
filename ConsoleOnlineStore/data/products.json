@@ -1,0 +1,23 @@
+[
+  {
+    "Id": "0001",
+    "Name": "Apple",
+    "Description": "Sweet Apple",
+    "Price": 1.99,
+    "Quantity": 2
+  },
+  {
+    "Id": "0002",
+    "Name": "Orange",
+    "Description": "Juicy Orange",
+    "Price": 2.99,
+    "Quantity": 1
+  },
+  {
+    "Id": "0003",
+    "Name": "Banana",
+    "Description": "Mmm Banana",
+    "Price": 3.99,
+    "Quantity": 1
+  }
+]

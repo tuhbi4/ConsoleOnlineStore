@@ -1,14 +1,15 @@
 ﻿using System;
+using OnlineStoreView.Models.MenuItems;
 
-namespace OnlineStoreView.Models
+namespace OnlineStoreView.Models.MenuItemHandlers
 {
     public class MenuItemHandler : MenuItem
     {
-        public Type Handler { get; protected set; }
+        public Type NextViewType { get; }
 
-        public MenuItemHandler(string caption, Type handler) : base(caption)
+        public MenuItemHandler(string caption, Type nextView) : base(caption)
         {
-            Handler = handler;
+            NextViewType = nextView;
         }
     }
 }

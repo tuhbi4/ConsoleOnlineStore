@@ -2,8 +2,8 @@
 {
     public interface IAccountService
     {
-        public bool TryLogIn(string login, string password);
+        public int TryLogin(string login, string password);
 
-        public bool TryRegister(string login, string password);
+        public int TryRegister(string login, string password);
     }
 }

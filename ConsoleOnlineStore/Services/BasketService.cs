@@ -1,30 +1,41 @@
 ﻿using System.Collections.Generic;
+using ConsoleOnlineStore.Interfaces;
 using ConsoleOnlineStore.Interfaces.Services;
+using ConsoleOnlineStore.Models;
 using ConsoleOnlineStore.Models.Repositories;
 
 namespace ConsoleOnlineStore.Services
 {
     public class BasketService : IBasketService
     {
-        public List<Product> Basket { get; }
+        private readonly IRepository<Product> productRepository;
 
-        public void AddProduct(Product product, int quantity)
+        public BasketService(IRepository<Product> productRepository)
         {
-            Product existingProduct = Basket.Find(x => x.Id.Contains(product.Id));
-            if (existingProduct != null)
+            this.productRepository = productRepository;
+        }
+
+        public int TryAddProductToBasket(Basket basket, Product product, int quantity)
+        {
+            List<Product> productList = productRepository.Read();
+            Product intendedProduct = productList.Find(x => x.Name.Contains(product.Name));
+            BasketItem addedProduct = basket.BasketItemList.Find(x => x.Product.Name.Contains(product.Name));
+
+            if (intendedProduct == null)
             {
-                existingProduct.Quantity += quantity;
+                return -1;
+            }
+            else if ((addedProduct == null && quantity <= intendedProduct.Quantity)
+                || (addedProduct != null && quantity <= intendedProduct.Quantity - addedProduct.AddedQuantity))
+            {
+                basket.AddProduct(product, quantity);
+
+                return 1;
             }
             else
             {
-                Basket.Add(product);
-                product.Quantity = quantity;
+                return 0;
             }
-        }
-
-        public void ClearBasket()
-        {
-            Basket.Clear();
         }
     }
 }

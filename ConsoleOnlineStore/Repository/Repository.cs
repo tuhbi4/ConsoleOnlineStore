@@ -5,20 +5,15 @@ namespace ConsoleOnlineStore.Repository
 {
     public class Repository<T> : IRepository<T>
     {
-        private readonly ISerializer<T> jsonSerializer;
-        private readonly IDeserializer<T> jsonDeserializer;
+        private readonly ISerializer jsonSerializer;
+        private readonly IDeserializer jsonDeserializer;
         private readonly string filepath;
 
-        public Repository(ISerializer<T> jsonSerializer, IDeserializer<T> jsonDeserializer, string filepath)
+        public Repository(ISerializer jsonSerializer, IDeserializer jsonDeserializer, string filepath)
         {
             this.jsonSerializer = jsonSerializer;
             this.jsonDeserializer = jsonDeserializer;
             this.filepath = filepath;
-        }
-
-        public void Create(T dataObject)
-        {
-            jsonSerializer.SaveData(filepath, dataObject);
         }
 
         public void Create(List<T> dataObject)
@@ -28,22 +23,7 @@ namespace ConsoleOnlineStore.Repository
 
         public List<T> Read()
         {
-            return jsonDeserializer.GetData(filepath);
-        }
-
-        public T Read(int id)
-        {
-            throw new System.NotImplementedException(); //TODO
-        }
-
-        public void Update(int id)
-        {
-            throw new System.NotImplementedException(); //TODO
-        }
-
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException(); //TODO
+            return jsonDeserializer.GetData<T>(filepath);
         }
     }
 }

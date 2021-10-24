@@ -1,0 +1,127 @@
+[
+  {
+    "AccountLogin": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      }
+    ],
+    "PurchaseDate": "2021-10-20T08:41:44.5439753Z"
+  },
+  {
+    "AccountLogin": null,
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      }
+    ],
+    "PurchaseDate": "2021-10-20T08:45:44.544044Z"
+  },
+  {
+    "AccountLogin": "2",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      }
+    ],
+    "PurchaseDate": "2021-10-20T08:49:44.5440486Z"
+  },
+  {
+    "AccountLogin": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 1
+      }
+    ],
+    "PurchaseDate": "2021-10-23T21:00:06.8800606Z"
+  },
+  {
+    "AccountLogin": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 1
+      }
+    ],
+    "PurchaseDate": "2021-10-23T21:19:15.891386Z"
+  },
+  {
+    "AccountLogin": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 1
+      }
+    ],
+    "PurchaseDate": "2021-10-23T21:20:59.2956568Z"
+  },
+  {
+    "AccountLogin": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 2
+      },
+      {
+        "Id": "0002",
+        "Name": "Orange",
+        "Description": "Juicy Orange",
+        "Price": 2.99,
+        "Quantity": 1
+      },
+      {
+        "Id": "0003",
+        "Name": "Banana",
+        "Description": "Mmm Banana",
+        "Price": 3.99,
+        "Quantity": 1
+      }
+    ],
+    "PurchaseDate": "2021-10-23T22:15:07.214221Z"
+  },
+  {
+    "AccountLogin": "1",
+    "ProductList": [
+      {
+        "Id": "0001",
+        "Name": "Apple",
+        "Description": "Sweet Apple",
+        "Price": 1.99,
+        "Quantity": 1
+      },
+      {
+        "Id": "0003",
+        "Name": "Banana",
+        "Description": "Mmm Banana",
+        "Price": 3.99,
+        "Quantity": 1
+      }
+    ],
+    "PurchaseDate": "2021-10-23T22:18:18.6245388Z"
+  }
+]

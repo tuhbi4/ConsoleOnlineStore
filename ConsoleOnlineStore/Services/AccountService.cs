@@ -9,6 +9,7 @@ namespace ConsoleOnlineStore.Services
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IHashService md5Hash;
+        private List<Account> accountList;
 
         public AccountService(IHashService md5Hash, IRepository<Account> accountRepository)
         {
@@ -16,27 +17,61 @@ namespace ConsoleOnlineStore.Services
             this.accountRepository = accountRepository;
         }
 
-        public bool TryLogIn(string login, string password)
+        public int TryLogin(string login, string password)
         {
-            return IsAccountFound(login, password);
+            accountList = accountRepository.Read();
+
+            if (IsAccountFound(login, password))
+            {
+                return 1;
+            }
+            else if (IsLoginExist(login))
+            {
+                return 0;
+            }
+
+            return -1;
         }
 
-        public bool TryRegister(string login, string password)
+        public int TryRegister(string login, string password)
         {
+            accountList = accountRepository.Read();
+
             if (!IsAccountFound(login, password))
             {
-                accountRepository.Create(new Account(login, md5Hash.GetHash(password)));
-                return true;
+                accountList.Add(new Account(login, md5Hash.GetHash(password)));
+                accountRepository.Create(accountList);
+
+                return 1;
+            }
+            else if (IsLoginExist(login))
+            {
+                return 0;
+            }
+
+            return -1;
+        }
+
+        private bool IsAccountFound(string login, string password)
+        {
+            if (accountList != null && login != null && password != null)
+            {
+                Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
+
+                return accountForMatching != null && accountForMatching.Password == md5Hash.GetHash(password);
             }
 
             return false;
         }
 
-        private bool IsAccountFound(string login, string password)
+        private bool IsLoginExist(string login)
         {
-            List<Account> accountList = accountRepository.Read();
-            Account accountForMatching = accountList.Find(x => x.Login.Contains(login));
-            return accountForMatching != null && accountForMatching.Password == md5Hash.GetHash(password);
+            if (accountList != null)
+            {
+                return accountList.Exists(item => item.Login == login);
+            }
+
+            return false;
         }
     }
 }
