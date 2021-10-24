@@ -1,7 +1,7 @@
 ﻿using System;
 using ConsoleOnlineStore.Models.Repositories;
 
-namespace OnlineStoreView.Models.MenuItemHandlers
+namespace OnlineStoreView.Models.MenuItems.MenuItemHandlers
 {
     public class ProductItemHandler : MenuItemHandler
     {

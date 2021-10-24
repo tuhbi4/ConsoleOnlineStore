@@ -1,7 +1,7 @@
 ﻿using System;
 using OnlineStoreView.Interfaces;
 using OnlineStoreView.Models;
-using OnlineStoreView.Models.MenuItemHandlers;
+using OnlineStoreView.Models.MenuItems.MenuItemHandlers;
 using OnlineStoreView.Renderers;
 
 namespace OnlineStoreView.View.Views
@@ -11,6 +11,8 @@ namespace OnlineStoreView.View.Views
         public Type NextViewType { get; protected set; }
 
         protected Header Header { get; set; }
+
+        protected string NotificationMessage { get; set; }
 
         protected MenuItemHandler Back { get; set; }
 
@@ -49,6 +51,11 @@ namespace OnlineStoreView.View.Views
             NextViewType = GetNextViewType();
         }
 
+        public void SetNotificationMessage(string message)
+        {
+            NotificationMessage = message;
+        }
+
         protected abstract void BeforePrintMenu();
 
         protected virtual void PrintMenu()
@@ -56,6 +63,11 @@ namespace OnlineStoreView.View.Views
             if (Header != null)
             {
                 PrintHeader();
+            }
+
+            if (NotificationMessage != null)
+            {
+                PrintNotificationMessage();
             }
 
             if (Back != null)
@@ -120,6 +132,11 @@ namespace OnlineStoreView.View.Views
         {
             LineRenderer.Clear();
             LineRenderer.Header($" > {Header.Text}\n");
+        }
+
+        private void PrintNotificationMessage()
+        {
+            LineRenderer.Error($"\n >>> {NotificationMessage} <<<");
         }
 
         protected virtual void PrintBack()

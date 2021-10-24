@@ -1,10 +1,17 @@
 ﻿using ConsoleOnlineStore.Models.Repositories;
-using OnlineStoreView.Interfaces;
+using OnlineStoreView.View;
 
-namespace OnlineStoreView.View
+namespace OnlineStoreView.Interfaces
 {
     public class ViewBuffer : IViewBuffer
     {
+        private readonly IBasketFactory basketFactory;
+
+        public ViewBuffer(IBasketFactory basketFactory)
+        {
+            this.basketFactory = basketFactory;
+        }
+
         public string CurrentUser { get; private set; }
 
         public Product CurrentProduct { get; private set; }
@@ -16,12 +23,13 @@ namespace OnlineStoreView.View
         public void SetCurrentUser(string accountLogin)
         {
             CurrentUser = accountLogin;
-            CurrentBasket = new Basket(accountLogin);
+            CurrentBasket = basketFactory.Create(accountLogin);
         }
 
         public void ResetCurrentUser()
         {
             CurrentUser = null;
+            CurrentBasket.ClearBasket();
             CurrentBasket = null;
         }
 
