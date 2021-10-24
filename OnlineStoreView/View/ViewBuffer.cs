@@ -29,7 +29,7 @@ namespace OnlineStoreView.Interfaces
         public void ResetCurrentUser()
         {
             CurrentUser = null;
-            CurrentBasket.ClearBasket();
+            CurrentBasket?.ClearBasket();
             CurrentBasket = null;
         }
 
