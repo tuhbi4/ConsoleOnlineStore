@@ -25,7 +25,7 @@ namespace ConsoleOnlineStore.Services
             {
                 return -1;
             }
-            else if ((addedProduct == null && quantity <= intendedProduct.Quantity)
+            else if ((addedProduct == null && quantity <= intendedProduct.Quantity && quantity >= 1)
                 || (addedProduct != null && quantity <= intendedProduct.Quantity - addedProduct.AddedQuantity))
             {
                 basket.AddProduct(product, quantity);

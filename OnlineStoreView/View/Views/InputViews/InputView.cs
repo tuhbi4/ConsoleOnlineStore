@@ -54,16 +54,13 @@ namespace OnlineStoreView.View.Views.InputViews
             MenuItems[currentItemIndex].SetInput(string.Empty);
             string inputText = Console.ReadLine();
 
-            if (int.TryParse(inputText, out int input))
+            if (int.TryParse(inputText, out int input) && inputText == "0")
             {
-                if (inputText == "0")
-                {
-                    return input;
-                }
-                else if (MenuItems != null && MenuItems.Count > 0)
-                {
-                    MenuItems[currentItemIndex].SetInput(inputText);
-                }
+                return input;
+            }
+            else if (MenuItems != null && MenuItems.Count > 0)
+            {
+                MenuItems[currentItemIndex].SetInput(inputText);
             }
 
             return -1;
